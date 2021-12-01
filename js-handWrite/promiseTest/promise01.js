@@ -157,3 +157,14 @@ Promise.defer = Promise.deferred = function () {
 // npm install promises-aplus-tests -g
 // promises-aplus-tests promise01.js
 
+
+test();
+function test(){
+    new Promise((resolve,reject)=>{
+        resolve('1');
+    }).then(()=>{
+        console.log('hello');
+    });
+}
+
+

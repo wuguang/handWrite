@@ -1,0 +1,55 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Problem_12_LowestCommonAncestor",
+            "request": "launch",
+            "mainClass": "class3.Problem_12_LowestCommonAncestor",
+            "projectName": "practise-algorithm_e945ba3a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Problem_02_PrintBinaryTree",
+            "request": "launch",
+            "mainClass": "class3.Problem_02_PrintBinaryTree",
+            "projectName": "practise-algorithm_88c91566"
+        },
+        {
+            "name": "express-app",
+            "request": "launch",
+            "type": "node",
+            "program": "${workspaceFolder}/practise/sort.js",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script",
+                "sort"
+            ],
+            "port": 6666,
+            "stopOnEntry": true
+        },
+        {
+            "name": "js-handWrite",
+            "request": "launch",
+            "type": "node",
+            "program": "${workspaceFolder}/js-handWrite/promiseTest/myPromise.js",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "hand-js"
+            ],
+            "port": 6667,
+            "stopOnEntry": true
+        },
+        {
+            "name": "hand-test",
+            "request": "launch",
+            "type": "node",
+            "program": "${workspaceFolder}/node_modules/promises-aplus-test/lib/tests/helpers/testThreeCases.js",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "hand-test"
+            ],
+            "port": 6668,
+            "stopOnEntry": true
+        }
+    ]
+}
