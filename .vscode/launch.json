@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Problem_10_IsBSTAndCBT",
+            "request": "launch",
+            "mainClass": "class3.Problem_10_IsBSTAndCBT",
+            "projectName": "handWrite_43efec23"
+        },
+        {
+            "type": "java",
             "name": "Launch Problem_12_LowestCommonAncestor",
             "request": "launch",
             "mainClass": "class3.Problem_12_LowestCommonAncestor",
