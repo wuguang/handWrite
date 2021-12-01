@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+
+    <body>
+        <h1 id="myshow"></h1>
+        <h1>
+            <button id="btn01">btn01</button>
+        </h1>
+
+        <h1>
+            <button id="btn02">btn02</button>
+        </h1>
+    </body>
+
+
+<script src="">
+
+</script>
+<script type="text/javascript">
+
+
+function* helloWorldGenerator() {
+    yield 'one';
+    yield 'two';
+    yield 'three';
+}
+
+let fn = helloWorldGenerator();
+
+console.log(fn.next());
+console.log(fn.next());
+console.log(fn.next());
+console.log(fn.next());
+console.log(fn.next());
+
+
+
+function* xxfn(m){
+    var n = 12;
+    var innerOne = yield n+m;
+    console.log(`innerOne = ${innerOne}`)
+    var innerTwo = yield n+m+m;
+    console.log(`innerTwo = ${innerTwo}`)
+    var innerThree = yield n*2;
+    console.log(`innerThree = ${innerThree}`)
+}
+
+var gen = xxfn(4);
+
+console.log( `outerOne = `+ JSON.stringify(gen.next()));
+console.log(`outerTwo = `+ JSON.stringify(gen.next()));
+console.log(`outerThree = `+ JSON.stringify(gen.next()));
+//console.log(`outerFour = `+ gen.next('game over').value);
+console.log(`outerFour = `+ JSON.stringify(gen.next()));
+</script>
+
+</html>

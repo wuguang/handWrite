@@ -1,0 +1,181 @@
+<html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+
+    <body>
+        <h1 id="myshow"></h1>
+        <h1>
+            <button id="btn01">btn01</button>
+        </h1>
+
+        <h1>
+            <button id="btn02">btn02</button>
+        </h1>
+
+        
+    </body>
+
+
+<script src="">
+
+</script>
+<script type="text/javascript">
+
+function typeIs(obj){
+    let toString = Object.prototype.toString;
+    let resultStr = toString.call(obj);
+    let typeMap = {
+        '[object Array]':'isArray',
+        '[object Object]':'isObject',
+        '[object Date]':'isDate',
+        '[object String]':'isString',
+        '[object Number]':'isNumber',
+        '[object Boolean]':'isBoolean',
+        '[object Undefined]':'isUndefined',
+        '[object Null]':'isNull',
+    }
+    return typeMap[resultStr];
+}
+//每次执行覆盖
+typeIs.isValueType = (value)=>{
+    let valueType = false;
+    let valueTypeList = ['isString','isNumber','isBoolean','isUndefined','isNull'];
+    if(valueTypeList.indexOf(typeIs(value))>-1){
+        valueType = true;
+    }
+    return valueType;
+}
+
+
+
+
+////-----------------分割线-----------------------
+function deepClone(obj,objContainer = new Map){
+    let newObj;
+    let type = typeIs(obj);
+    if(objContainer.has(obj)){
+        return objContainer.get(obj);
+    }
+    //值类型,直接返回
+    if(typeIs.isValueType(obj)){
+        return obj;
+    }else{
+        
+        if(type === 'isObject'){
+            newObj  = {};
+        }else if(type === 'isArray'){
+            newObj  = [];
+        }
+        objContainer.set(obj,newObj);
+        for(let k in obj){
+            if(obj.hasOwnProperty(k)){
+                if(type === 'isObject'){
+                    newObj[k] = deepClone(obj[k],objContainer);
+                }else if(type === 'isArray'){
+                    newObj.push(deepClone(obj[k],objContainer));
+                }
+            }
+        }
+        return newObj;
+        /*
+        if(type === 'isObject'){
+            newObj = {};
+            //将新的对象存储
+            objContainer.set(obj,newObj);
+            for(let k in obj){
+                if(obj.hasOwnProperty(k)){
+                    //迭代
+                    if(objContainer.has[obj[k]]){
+                        newObj[k] = objContainer.get[obj[k]];
+                    }else{
+                        newObj[k] = deepClone(obj[k],objContainer);
+                    }
+                }
+            }
+            return newObj;
+        }else if(type === 'isArray'){
+            newObj = [];
+            //将新的对象存储
+            objContainer.set(obj,newObj);
+            obj.forEach(item=>{
+                //迭代
+                newObj.push(deepClone(item));
+            });
+            return newObj;
+        }else if(type === 'isDate'){
+            return new Date(obj);
+        }else{
+            //未知类型暂不支持
+            return obj;
+        }
+        */
+    }
+}
+
+
+
+function deepCloneNew(obj,objContainer=new Map){
+    let newObj;
+    let type = typeIs(obj);
+    if(objContainer.has(obj)){
+        return objContainer.get(obj);
+    }
+    //值类型,直接返回
+    if(typeIs.isValueType(obj)){
+        return obj;
+    }else{
+        if(type === 'isObject'){
+            newObj = {};
+            //将新的对象存储
+            objContainer.set(obj,newObj);
+            for(let k in obj){
+                if(obj.hasOwnProperty(k)){
+                    //迭代
+                    newObj[k] = deepClone(obj[k],objContainer);
+                }
+            }
+            return newObj;
+        }else if(type === 'isArray'){
+            newObj = [];
+            //将新的对象存储
+            objContainer.set(obj,newObj);
+            obj.forEach(item=>{
+                //迭代
+                newObj.push(deepClone(obj[k],objContainer));
+            });
+            return newObj;
+        }else if(type === 'isDate'){
+            return new Date(obj);
+        }else{
+            //未知类型暂不支持
+            return obj;
+        }
+    }
+}
+
+
+
+let lilei = {};
+let tom = {
+    name:'will',
+    age:58,
+    child:lilei
+}
+
+lilei.height = 180;
+lilei.father = tom;
+
+let obj3 = {
+    lilei,
+    tom
+}
+
+
+console.log(deepCloneNew(obj3));
+
+</script>
+
+</html>

@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+
+    <body>
+        <h1 id="myshow"></h1>
+        <h1>
+            <button id="btn01">btn01</button>
+        </h1>
+
+        <h1>
+            <button id="btn02">btn02</button>
+        </h1>
+    </body>
+<script type="text/javascript">
+
+function foo() {
+    getName = function () { 
+       alert(1); 
+    }
+    return this;
+}   
+foo.getName = function () { 
+    alert(2); 
+};
+foo.prototype.getName = function () { 
+    alert(3); 
+};
+//getName();     // 5
+var getName = function () { 
+    alert(4); 
+};
+function getName() { 
+    alert(5); 
+}
+
+
+/*
+foo.getName();    // 2
+getName();     // 4
+foo().getName();  //1
+getName();   // 1
+*/
+
+
+new foo['getName']()
+
+//成员访问符执行  new (foo.getName)() // 2 
+//new优先执行:  (new foo).getName(); //3  
+
+
+
+//new foo().getName(); 
+//从左到右的执行顺序 成员访问优先  (new foo()).getName() // 3  
+//new 优先 
+
+//new (foo().getName)() // 1
+
+//(new foo()).getName() //3
+
+//new new foo().getName(); 
+
+
+
+//1 优先级  [new foo()].getName
+//2 new ([new foo()].getName)();
+
+
+</script>
+
+</html>

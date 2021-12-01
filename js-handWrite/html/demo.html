@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+
+    <body>
+        <h1 id="myshow"></h1>
+        <h1>
+            <button id="btn01">btn01</button>
+        </h1>
+
+        <h1>
+            <button id="btn02">btn02</button>
+        </h1>
+    </body>
+<script type="text/javascript">
+
+function One(name){
+    this.name = name;
+}
+
+One.prototype = {
+    constructor:One,
+    say(){
+        console.log('hello I am one~~');
+    }
+}
+
+
+function Two(age){
+    this.age = age;
+}
+
+Two.prototype = {
+    constructor:Two,
+    go(){
+        console.log('hello I am two~~');
+    }
+}
+
+function myExtends(Father,Child,fatherParams,childParams){
+    let newObj = {};
+    Father.call(newObj,fatherParams);
+    Child.call(newObj,childParams);
+    let childPrototype = Object.setPrototypeOf(Child.prototype,Father.prototype);
+    Object.setPrototypeOf(newObj,childPrototype);
+    return newObj;
+}
+
+
+let obj = myExtends(One,Two,'will',20);
+
+console.log(obj);
+
+
+
+
+
+
+</script>
+
+</html>

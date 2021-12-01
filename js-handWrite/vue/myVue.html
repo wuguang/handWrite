@@ -1,0 +1,73 @@
+
+<html>
+<head></head>
+<body>
+
+<input />
+<div id="app"></div>
+    
+</body>
+<script type="text/javascript">
+    //https://www.cnblogs.com/huiwenhua/p/13648068.html
+
+    class Vue{
+        constructor(option){
+            const el = document.querySelector(option.el);
+            this.data = option.data;
+            el.innerHTML = option.data.message;
+            this.observe(this.data,el);
+        }
+
+        observe(obj,el){
+            if(typeof obj!=='object'){
+                return;
+            }
+            for(let key in obj){
+                this.observe(obj[key],el);
+
+                let originValue = obj[key];
+                Object.defineProperty(obj,key,{
+                    get(){
+                        return originValue;
+                    },
+                    set(newValue){
+                        if(originValue !== newValue){
+                            console.log('data is updated',newValue);
+                            originValue = newValue;
+                            el.innerHTML = originValue;
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+    const app = new Vue({
+        el:'#app',
+        data:{
+            message:'Hello world'
+        }
+    });
+
+    const input = document.querySelector('input');
+    const el = document.querySelector('#app');
+
+
+    input.oninput = function(e){
+        //el.innerHTML = e.target.value;
+        app.data.message = e.target.value;
+    }
+
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+

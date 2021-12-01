@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+
+    <body>
+        <h1 id="myshow"></h1>
+        <h1>
+            <button id="btn01">btn01</button>
+        </h1>
+
+        <h1>
+            <button id="btn02">btn02</button>
+        </h1>
+    </body>
+<script type="text/javascript">
+
+function Person(name,age){
+    this.name = name;
+    this.age = age;
+}
+
+Person.prototype = {
+    constructor:Person,
+    say(){
+        console.log(`Hello, I'm ${this.name}`);
+    }
+}
+
+let someOne = new Person('someOne',20);
+someOne.say();
+
+
+</script>
+
+</html>

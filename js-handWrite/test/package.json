@@ -1,0 +1,11 @@
+{
+    "devDependencies": {
+        "promises-aplus-tests": "*"
+    },
+    "scripts": {
+        "test": "run-my-own-tests && promises-aplus-tests test/my-adapter"
+    },
+    "dependencies": {
+        "vue": "^3.0.2"
+    }
+}

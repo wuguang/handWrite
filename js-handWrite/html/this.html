@@ -1,0 +1,180 @@
+<html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+
+    <body>
+        <h1>this/call/apply/bind</h1>
+    </body>
+<script type="text/javascript">
+//bind
+
+/*
+let obj01 = {
+    name:'will01',
+    age:10,
+    say(height){
+        console.log(`name = ${this.name}---age = ${this.age}---height = ${height}`);
+    }
+}
+
+let obj02 = {
+    name:'will02',
+    age:20
+}
+
+let obj03 = {
+    name:'will03',
+    age:30
+}
+
+Function.prototype.myBind = function(){
+    if(typeof arguments[0] !== 'object'){
+        throw "绑定对象是必传的！"
+    }
+    if (typeof this !== "function") {
+      throw new Error("Function.prototype.bind - what is trying to be bound is not callable");
+    }
+
+    let args = [].slice.apply(arguments);
+    let exeObj = args.slice(0,1)[0];
+    let funArgs = args.slice(1);
+    let fun = this;
+    return function(){
+        let exeFnParam = arguments.length>0?[].slice.apply(arguments):funArgs;
+        const fnKeyName = Symbol();
+        exeObj[fnKeyName] = fun;
+        exeObj[fnKeyName](...exeFnParam);
+        delete exeObj[fnKeyName];
+    }
+}
+
+
+Function.prototype.myCall = function(){
+    if(arguments.length<1 || typeof arguments[0]!=='object'){
+        throw "第一个参数必须为函数绑定的对象";
+    }
+    let target = arguments[0];
+    let args = Array.from(arguments).slice(1);
+    let fnKeyName = Symbol();
+    target[fnKeyName] = this;
+    target[fnKeyName](...args);
+    delete target[fnKeyName];
+}
+
+Function.prototype.myApply = function(){
+    if(typeof arguments[0]!=='object'){
+        throw "第一个参数必须为函数绑定的对象";
+    }
+    if( arguments[1] && !Array.isArray(arguments[1]) ){
+        throw "第二个参数必须为数组";
+    }
+    let target = arguments[0];
+    let argsArr = arguments[1]?arguments[1]:[];
+    let fnKeyName = Symbol();
+    target[fnKeyName] = this;
+    target[fnKeyName](...argsArr);
+    delete target[fnKeyName];
+}
+
+obj01.say.myApply(obj02,[170]);
+
+*/
+
+//普通函数及回调
+
+/*
+
+let name01 = 'will00';
+let age = 20;
+
+var name = 'will00';
+var age = 20;
+
+function sayHello(){
+    console.log(`My name is ${this.name01}, I am ${this.age}`);
+}
+
+sayHello();
+
+*/
+
+
+
+/*
+let obj01 = {
+    name:'will01',
+    age:11,
+    sayHello(){
+        console.log(`obj01--sayHello----My name is ${this.name}, I am ${this.age}`);
+    }
+}
+obj01.sayHello();
+let newSayHello = obj01.sayHello;
+
+newSayHello();
+*/
+
+let obj02 = {
+    name:'will02',age:12,
+    _sayHello(cb){
+        cb();
+    },
+    sayHello(cb){
+        cb.call(this);
+    }
+}
+let obj01 = {
+    name:'will01',age:11,
+    sayHello(height){
+        console.log(`-----${height}----obj01--sayHello----My name is ${this.name}, I am ${this.age}`);
+    }
+}
+let newSayHello = obj01.sayHello;
+//obj02._sayHello(newSayHello);
+//obj02.sayHello(newSayHello);
+var fn03 = obj02.sayHello;
+
+Function.prototype.myBind02 = function(bindObj){
+    let fn = this;
+    let paramsArr = Array.from(arguments).slice(1);
+    return function(){
+        let selfParams = Array.from(arguments).slice(0);
+        let keyName = Symbol();
+        bindObj[keyName] = fn;
+        //fn.apply(bindObj,paramsArr);
+        bindObj[keyName](...paramsArr);
+        delete bindObj[keyName];
+    }
+}
+
+Function.prototype.myCall02 = function(callObj){
+    var fn = this;
+    let paramsArr = Array.from(arguments).slice(1);
+    let keyName = Symbol();
+    callObj[keyName] = fn;
+    callObj[keyName](...paramsArr);
+    delete callObj[keyName];
+}
+
+
+
+//this;
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>

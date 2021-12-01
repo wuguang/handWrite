@@ -1,0 +1,144 @@
+<html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+
+    <body>
+        <h1 id="myshow"></h1>
+        <h1>
+            <button id="btn01">btn01</button>
+        </h1>
+
+        <h1>
+            <button id="btn02">btn02</button>
+        </h1>
+
+        
+    </body>
+
+
+<script src="">
+
+</script>
+<script type="text/javascript">
+
+function MyPromise(executor){
+    this.statusMap = {
+        pending:'PENDING',
+        fufilled:'FULFILLED',
+        rejected:'REJECTED'
+    }
+
+    this.value;
+    this.reason;
+    this.status = this.statusMap.pending;
+    this.onFulfilled = null;
+    this.onRejected  = null;
+    this.catchFn = null;
+
+    var self = this;
+    try{
+        executor(this.resolve.bind(this),this.reject.bind(this));
+    }catch(e){
+        //this.catch(e);
+        this.reject(e);
+    }
+    //后面有挂载then自动执行
+}
+
+MyPromise.prototype ={
+    constructor:MyPromise,
+    _handleResult(result){
+        if(result instanceof MyPromise){
+            result.onFulfilled = this.nextPromise.onFulfilled;
+            result.onRejected = this.nextPromise.onRejected;
+            result.nextPromise = this.nextPromise.nextPromise;
+        }else{
+            this.nextPromise.resolve(result);
+        }
+    },
+    resolve(value){
+        if(this.status === this.statusMap.pending){
+            this.value = value;
+            setTimeout(()=>{
+                var result;
+                if(typeof this.onFulfilled === 'function'){
+                    try{
+                        result = this.onFulfilled(this.value);
+                        this._handleResult(result);
+                    }catch(e){
+                        this.nextPromise.reject(e);
+                    }
+                }
+            });
+        }
+    },
+    reject(reason){
+        if(this.status === this.statusMap.pending){
+            this.reason = reason;
+            setTimeout(()=>{
+                var failResult;
+                try{
+                    if(typeof this.onRejected === 'function'){
+                        failResult = this.onRejected(this.reason);
+                        this._handleResult(failResult);
+                    }else{
+                        this.exeCatch(reason);
+                    }
+                }catch(e){
+                    this.exeCatch(e);
+                }
+            });
+        }
+    },
+    then(onFulfilled,onRejected){
+        this.onFulfilled = onFulfilled;
+        this.onRejected = onRejected;
+        this.nextPromise = new MyPromise((resolve,reject)=>{
+
+        });
+        return this.nextPromise;
+    },
+    exeCatch(e){
+        var current = this;
+        while(current){
+            if(typeof current.catchFn === 'function'){
+                current.catchFn(e);
+                current = null;
+            }else{
+                current = current.nextPromise?current.nextPromise:null;
+            }
+        }
+    },
+    catch(catchFn){
+        this.catchFn = catchFn;
+    }
+
+}
+
+
+new MyPromise((resolve,reject)=>{
+    setTimeout(()=>{
+        reject('reject--one');
+    },1000)
+}).then(data01=>{
+
+},reason01=>{
+    console.log(`reason01 = ${reason01}`);
+    return new MyPromise((resolve,reject)=>{
+        setTimeout(()=>{
+            reject(1);
+        },1000)
+    });
+}).then(data03=>{
+    console.log(`data03 = ${data03}`);
+}).catch(e=>{
+    console.log(e);
+});
+
+
+</script>
+
+</html>

@@ -1,0 +1,28 @@
+
+
+<html lang="en">
+    <head></head>
+    <body>
+        <h1>hello world~~~</h1>
+    </body>
+</html>
+<script>
+function add(first){
+    let total = first;
+    let innerFn  = function(){
+        let args = [].slice.apply(arguments);
+        total += args.reduce((one,two)=>{
+            return one + two;
+        });
+        return innerFn;
+    }
+    innerFn.toString = ()=>{
+        return total;
+    }
+
+    return innerFn;
+}
+
+console.log(add(1)(2)(3,4,5)(4)(5));
+
+</script>
