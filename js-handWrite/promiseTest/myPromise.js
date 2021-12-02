@@ -63,7 +63,6 @@ class MyPromise{
             setTimeout(fn);
         }
 
-
         //第二个promise 的 resolve 及 reject
         const resolvePromise =(promise2,x,resolve,reject)=>{
             // ??? why
@@ -98,7 +97,7 @@ class MyPromise{
         }
 
         const onFulfilledExecute = (promise2,resolve,reject)=>{
-            micorTask((promise2)=>{
+            micorTask(()=>{
                 try{
                     const x = onFulfilled(this.value);
                     //合理安排 resolve、及reject的执行就行了
@@ -126,21 +125,55 @@ class MyPromise{
             if(this.status === 'PENDING'){
                 //此处的this指向promise2
                 this.onFulfilledCbs.push(()=>{
-                    onFulfilledExecute(promise2,resolve,reject);
+                    micorTask(()=>{
+                        try{
+                            const x = onFulfilled(this.value);
+                            //合理安排 resolve、及reject的执行就行了
+                            resolvePromise(promise2,x,resolve,reject);
+                        }catch(e){
+                            reject(e);
+                        }
+                    });
                 });
 
                 this.onRejectedCbs.push(()=>{
-                    onRejectedExecute(promise2,resolve,reject);
+                    micorTask(()=>{
+                        console.log(`async~~~ `);
+                        try{
+                            const x = onRejected(this.reason);
+                            //合理安排 resolve、及reject的执行就行了
+                            resolvePromise(promise2,x,resolve,reject);
+                        }catch(e){
+                            reject(e);
+                        }
+                    });
                 });
             }
 
             if(this.status === 'FULFILLED'){
-                onFulfilledExecute(promise2,resolve,reject);
+                micorTask(()=>{
+                    try{
+                        const x = onFulfilled(this.value);
+                        //合理安排 resolve、及reject的执行就行了
+                        resolvePromise(promise2,x,resolve,reject);
+                    }catch(e){
+                        reject(e);
+                    }
+                });
             }
 
             if(this.status === 'REJECTED'){
                 console.log(`sync `);
-                onRejectedExecute(promise2,resolve,reject);
+                micorTask(()=>{
+                    console.log(`async~~~ `);
+                    try{
+                        const x = onRejected(this.reason);
+                        //合理安排 resolve、及reject的执行就行了
+                        resolvePromise(promise2,x,resolve,reject);
+                    }catch(e){
+                        reject(e);
+                    }
+                });
             }
         })
 
@@ -182,4 +215,6 @@ function test(){
 
 // npm install promises-aplus-tests -g
 // promises-aplus-tests myPromise.js
+
+
 

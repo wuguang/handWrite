@@ -4,7 +4,7 @@
     "description": "my-practise-algorithm",
     "main": "index.js",
     "scripts": {
-        "hand-js": "node ./js-handWrite/promiseTest/myPromise.js",
+        "start": "node ./algorithm/sort/sort.js",
         "hand-test": "promises-aplus-tests ./js-handWrite/promiseTest/myPromise.js"
     },
     "repository": {

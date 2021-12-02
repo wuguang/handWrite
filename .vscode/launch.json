@@ -1,6 +1,13 @@
 {
     "configurations": [
         {
+            "command": "npm start",
+            "name": "Run npm start",
+            "request": "launch",
+            "type": "node-terminal"
+        },
+        
+        {
             "type": "java",
             "name": "Launch Problem_10_IsBSTAndCBT",
             "request": "launch",
@@ -22,13 +29,12 @@
             "projectName": "practise-algorithm_88c91566"
         },
         {
-            "name": "express-app",
+            "name": "sort",
             "request": "launch",
             "type": "node",
-            "program": "${workspaceFolder}/practise/sort.js",
+            "program": "${workspaceFolder}/algorithm/sort/sort.js",
             "runtimeExecutable": "npm",
             "runtimeArgs": [
-                "run-script",
                 "sort"
             ],
             "port": 6666,
@@ -38,7 +44,8 @@
             "name": "js-handWrite",
             "request": "launch",
             "type": "node",
-            "program": "${workspaceFolder}/js-handWrite/promiseTest/myPromise.js",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/algorithm/sort/sort.js",
             "runtimeExecutable": "npm",
             "runtimeArgs": [
                 "hand-js"

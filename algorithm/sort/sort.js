@@ -31,7 +31,7 @@ class BigHeapSort{
         let len = this.arr.length;
         //从第一个非叶子节点开始调整，一直到，第一个节点
         //堆的自身的特点
-        let startIndex = len/2 -1;
+        let startIndex = Math.floor(len/2 -1);
         for(let i=startIndex; i>=0; i--){
             //堆的自身的特点
             let leftIndex = 2*startIndex + 1;
@@ -46,12 +46,12 @@ class BigHeapSort{
         let leftValue = this.arr[leftIndex];
         let rightValue = this.arr[rightIndex];
 
-        if(typeof leftValue === 'number' && leftValue>this.arr[bigIndex]){
+        if(leftIndex<=this.end && typeof leftValue === 'number' && leftValue>this.arr[bigIndex]){
             //索引暂缓
             bigIndex = leftIndex;
         }
 
-        if(typeof rightValue === 'number' && rightValue>this.arr[bigIndex]){
+        if(rightIndex<=this.end && typeof rightValue === 'number' && rightValue>this.arr[bigIndex]){
             bigIndex = rightIndex;
         }
         //发生了交换
@@ -72,7 +72,6 @@ class BigHeapSort{
 
     }
 }
-
 
 
 test();
