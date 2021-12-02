@@ -33,6 +33,7 @@ class BigHeapSort{
         //堆的自身的特点
         let startIndex = Math.floor(len/2 -1);
         for(let i=startIndex; i>=0; i--){
+            startIndex = i;
             //堆的自身的特点
             let leftIndex = 2*startIndex + 1;
             let rightIndex = leftIndex + 1;
@@ -40,6 +41,7 @@ class BigHeapSort{
         }  
     }
 
+    //[1,5,7,2,9,12,56,2,15,1,3]
     //往上交换
     shiftUp(targetIndex,leftIndex,rightIndex){
         let bigIndex = targetIndex;
