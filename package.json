@@ -4,7 +4,7 @@
     "description": "my-practise-algorithm",
     "main": "index.js",
     "scripts": {
-        "start": "node ./algorithm/sort/sort.js",
+        "start": "node ./algorithm/sort/fibonacci.js",
         "hand-test": "promises-aplus-tests ./js-handWrite/promiseTest/myPromise.js"
     },
     "repository": {

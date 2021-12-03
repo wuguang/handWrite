@@ -1,12 +1,25 @@
 {
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch PrintListReversing5",
+            "request": "launch",
+            "mainClass": "PrintListReversing5",
+            "projectName": "handWrite_e99d0f77"
+        },
+        {
+            "type": "java",
+            "name": "Launch FindNumber3",
+            "request": "launch",
+            "mainClass": "FindNumber3",
+            "projectName": "handWrite_e99d0f77"
+        },
+        {
             "command": "npm start",
             "name": "Run npm start",
             "request": "launch",
             "type": "node-terminal"
         },
-        
         {
             "type": "java",
             "name": "Launch Problem_10_IsBSTAndCBT",
