@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch FindNumber3",
+            "request": "launch",
+            "mainClass": "FindNumber3",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
             "name": "Launch PrintListReversing5",
             "request": "launch",
             "mainClass": "PrintListReversing5",
