@@ -4,9 +4,7 @@
     "description": "my-practise-algorithm",
     "main": "index.js",
     "scripts": {
-        "start":"node --inspect-brk ./node_modules/webpack/bin/webpack.js",
-        "hand-js": "node ./js-handWrite/promiseTest/myPromise.js",
-        "hand-test": "promises-aplus-tests ./js-handWrite/promiseTest/myPromise.js"
+        "start":"node --inspect-brk ../node_modules/webpack/bin/webpack.js"
     },
     "repository": {
         "type": "git",
