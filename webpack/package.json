@@ -4,7 +4,7 @@
     "description": "my-practise-algorithm",
     "main": "index.js",
     "scripts": {
-        "start":"node --inspect-brk ../node_modules/webpack/bin/webpack.js"
+        "start": "node --inspect-brk ../node_modules/webpack/bin/webpack.js"
     },
     "repository": {
         "type": "git",
@@ -18,12 +18,12 @@
     "homepage": "https://github.com/wuguang/practise-algorithm#readme",
     "dependencies": {
         "data-struct-js": "0.0.15",
-        "express": "^4.17.1",
-        "webpack": "^5.64.4",
-        "webpack-cli": "^4.9.1"
+        "express": "^4.17.1"
     },
     "devDependencies": {
         "promises-aplus-tests": "^2.1.2",
-        "tapable": "^2.2.1"
+        "tapable": "^2.2.1",
+        "webpack": "^5.64.4",
+        "webpack-cli": "^4.9.1"
     }
 }
