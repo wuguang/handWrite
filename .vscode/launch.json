@@ -2,6 +2,33 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch FindNumber3",
+            "request": "launch",
+            "mainClass": "FindNumber3",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
+            "name": "Launch PrintListReversing5",
+            "request": "launch",
+            "mainClass": "PrintListReversing5",
+            "projectName": "handWrite_e99d0f77"
+        },
+        {
+            "type": "java",
+            "name": "Launch FindNumber3",
+            "request": "launch",
+            "mainClass": "FindNumber3",
+            "projectName": "handWrite_e99d0f77"
+        },
+        {
+            "command": "npm start",
+            "name": "Run npm start",
+            "request": "launch",
+            "type": "node-terminal"
+        },
+        {
+            "type": "java",
             "name": "Launch Problem_10_IsBSTAndCBT",
             "request": "launch",
             "mainClass": "class3.Problem_10_IsBSTAndCBT",
@@ -22,13 +49,12 @@
             "projectName": "practise-algorithm_88c91566"
         },
         {
-            "name": "express-app",
+            "name": "sort",
             "request": "launch",
             "type": "node",
-            "program": "${workspaceFolder}/practise/sort.js",
+            "program": "${workspaceFolder}/algorithm/sort/sort.js",
             "runtimeExecutable": "npm",
             "runtimeArgs": [
-                "run-script",
                 "sort"
             ],
             "port": 6666,
@@ -38,7 +64,8 @@
             "name": "js-handWrite",
             "request": "launch",
             "type": "node",
-            "program": "${workspaceFolder}/js-handWrite/promiseTest/myPromise.js",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/algorithm/sort/sort.js",
             "runtimeExecutable": "npm",
             "runtimeArgs": [
                 "hand-js"

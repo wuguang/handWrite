@@ -50,52 +50,39 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
             asyncTask();
         },0); 
     }
-    let promise2 = new Promise((resolve, reject) => {
-      if (this.status === FULFILLED) {
+    let promise2 = null;
+    const doThenCb = (resolve, reject,status)=>{
+        queueMicrotask(() => {
+            // try、catch捕获执行onFulfilled函数执行过程的错误
+            try {
+              let x = null;
+              if(status === FULFILLED){
+                x = onFulfilled(this.value);
+              }else if(status === REJECTED){
+                x = onRejected(this.reason);
+              }
+              //  then方法返回的promise对象的状态由回调函数的返回值决定
+              resolvePromise(promise2, x, resolve, reject);
+            } catch (e) {
+              reject(e);
+            }
+        });
+    }
+
+
+    promise2 = new Promise((resolve, reject) => {
+      if (this.status === FULFILLED || this.status === REJECTED) {
         // 处理resolve同步执行
         // queueMicrotask实现微任务
-        queueMicrotask(() => {
-          // try、catch捕获执行onFulfilled函数执行过程的错误
-          //
-          try {
-            let x = onFulfilled(this.value);
-            //  then方法返回的promise对象的状态由回调函数的返回值决定
-            resolvePromise(promise2, x, resolve, reject);
-          } catch (e) {
-            reject(e);
-          }
-        });
-      } else if (this.status === REJECTED) {
-        queueMicrotask(() => {
-          try {
-            let x = onRejected(this.reason);
-            resolvePromise(promise2, x, resolve, reject);
-          } catch (e) {
-            reject(e);
-          }
-        });
-      } else if (this.status === PENDING) {
+        doThenCb(resolve, reject,this.status);
+      }  else if (this.status === PENDING) {
         // 处理resolve、reject异步执行
         // 思想：先把onFulilled函数存到数组中，当resolve函数异步执行时把数组中的元素（之前存的onFulfilled函数）执行
         this.onFulfilled.push(() => {
-          queueMicrotask(() => {
-            try {
-              let x = onFulfilled(this.value);
-              resolvePromise(promise2, x, resolve, reject);
-            } catch (e) {
-              reject(e);
-            }
-          });
+            doThenCb(resolve, reject,FULFILLED);
         });
         this.onRejected.push(() => {
-          queueMicrotask(() => {
-            try {
-              let x = onRejected(this.reason);
-              resolvePromise(promise2, x, resolve, reject);
-            } catch (e) {
-              reject(e);
-            }
-          });
+            doThenCb(resolve, reject,REJECTED);
         });
       }
     });
@@ -112,7 +99,7 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
       try {
         let then = x.then;
         if (typeof then === "function") {
-          then.call(
+            then.call(
             x,
             (y) => {
               if (used) return;
@@ -155,7 +142,7 @@ Promise.defer = Promise.deferred = function () {
 
 
 // npm install promises-aplus-tests -g
-// promises-aplus-tests promise01.js
+// promises-aplus-tests promise02.js
 
 
 test();
@@ -167,4 +154,68 @@ function test(){
     });
 }
 
+
+/*
+function resolvePromise(promise2, x, resolve, reject) {
+  // 如果 x 和 promise2 指向相同
+  if (x === promise2) {
+    reject(new TypeError("Chaining cycle detected for promise"));
+  }
+  // 如果x为promise 则采用其状态
+  if (isPromise(x)) {
+    if (x.state === "pending") {
+      return x.then(()=> {
+        resolve(x.value);
+      }, () => {
+        reject(x.reason);
+      })
+    }
+    if (x.state === "fulfilled") {
+      return resolve(x.value);
+    }
+    if (x.state === "rejected") {
+      return reject(x.reason);
+    }
+  } else if (isObject(x) || isFunction(x)) {
+    // 如果x是对象或者函数
+    let then;
+    // 取 x.then
+    try {
+      then = x.then;
+    } catch (error) { // 取x.then 如果报错则直接失败
+      reject(error);
+    }
+    // 如果 then 是 函数
+    if (isFunction(then)) {
+      // 只可以调用一个
+      let isCalled = false;
+      try {
+        then.call(x, y => {
+          if (isCalled) {
+            return;
+          }
+          isCalled = true;
+          resolvePromise(promise2, y, resolve, reject);
+        }, r => {
+          if (isCalled) {
+            return;
+          }
+          isCalled = true;
+          reject(r);
+        })
+      } catch (error) { // 执行then报错则直接返回失败
+        if (isCalled) {
+          return;
+        }
+        isCalled = true;
+        reject(error);
+      }
+    } else { // 如果不是方法 则把x作为promsie的值
+      resolve(x);
+    }
+  } else { // x 既不是方法也不是函数  则把x作为promsie的值
+    resolve(x);
+  }
+}
+*/
 

@@ -56,7 +56,6 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
         // queueMicrotask实现微任务
         queueMicrotask(() => {
           // try、catch捕获执行onFulfilled函数执行过程的错误
-          //
           try {
             let x = onFulfilled(this.value);
             //  then方法返回的promise对象的状态由回调函数的返回值决定
