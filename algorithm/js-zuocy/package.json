@@ -4,7 +4,7 @@
     "description": "my-practise-algorithm",
     "main": "index.js",
     "scripts": {
-        "start": "node --inspect-brk ./class5/isBst.js"
+        "start": "node --inspect-brk ./class5/findNextNodeForTree.js"
     },
     "repository": {
         "type": "git",

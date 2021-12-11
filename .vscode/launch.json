@@ -65,7 +65,7 @@
             "request": "launch",
             "type": "node",
             "cwd": "${workspaceFolder}",
-            "program": "${workspaceFolder}/algorithm/sort/sort.js",
+            "program": "${workspaceFolder}/algorithm/js-zuocy/class5/findNextNodeForTree.js",
             "runtimeExecutable": "npm",
             "runtimeArgs": [
                 "hand-js"
