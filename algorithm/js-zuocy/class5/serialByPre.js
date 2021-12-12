@@ -1,3 +1,11 @@
+function newNode(value){
+    return {
+        value,
+        left:null,
+        right:null
+    }
+}
+
 
 //先序   序列化
 function serialByPre(node,targetStr = ''){
@@ -8,32 +16,69 @@ function serialByPre(node,targetStr = ''){
 
     if(node.value){
         targetStr += `${node.value}_`;
-        if(node.left){
-            serialByPre(node.left,targetStr);
-        }else if(node.right){
-            serialByPre(node.right,targetStr);
-        }
+        targetStr = serialByPre(node.left,targetStr);
+        targetStr = serialByPre(node.right,targetStr);
         return targetStr;
     }
 }
 
-function unserialByPre(node,targetStr = ''){
-    
-    if(node === null){
-        return targetStr += '#_'; 
-    }
 
-    if(node.value){
-        targetStr += `${node.value}_`;
-        if(node.left){
-            serialByPre(node.left,targetStr);
-        }else if(node.right){
-            serialByPre(node.right,targetStr);
-        }
-        return targetStr;
+function buildLeft(node,strArr){
+    if(strArr.length === 0) return;
+    let value = strArr.shift();
+    if(value !== '#'){
+        node.left = newNode(value);
+    }
+    if(node.left){
+        buildNode(node.left,strArr);
     }
 }
 
+function buildRight(node,strArr){
+    if(strArr.length === 0) return;
+    let value = strArr.shift();
+    if(value !== '#'){
+        node.right = newNode(value);
+    }
+    if(node.right){
+        buildNode(node.right,strArr);
+    }
+}
+
+function buildNode(node,strArr){
+    buildLeft(node,strArr);
+    buildRight(node,strArr);
+}
+
+//为空的话用'null'表示
+function unserialByPre(strArr,root,curNode){
+    let value = strArr.shift();
+    if(!root){
+        root = newNode(value);
+    }
+
+    buildNode(root);
+    return root;
+
+}
+
+
+test();
 function test(){
+    let root = newNode(1);
+    root.left = newNode(2);
+    root.right = newNode(3);
+
+    root.left.left = newNode(4);
+    root.left.right = newNode(5);
+    root.left.right.right = newNode(6);
+
+    root.right.left = newNode(7);
+    root.right.right = newNode(8);
+    root.right.right.left = newNode(9);
+    root.right.right.left.left = newNode(10);
+
+    let str = serialByPre(root);
+    console.log(`str = ${str}`);
 
 }
