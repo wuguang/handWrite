@@ -1,3 +1,11 @@
+function newNode(value){
+    return {
+        value,
+        left:null,
+        right:null
+    }
+}
+
 
 /*
 1、将树以先序方式序列化，
@@ -64,6 +72,65 @@ function test(){
     let myTree = unserialByPre(serialStr);
 
     console.log(JSON.stringify(myTree));
+}
 
+
+function buildLeft(node,strArr){
+    if(strArr.length === 0) return;
+    let value = strArr.shift();
+    if(value !== '#'){
+        node.left = newNode(value);
+    }
+    if(node.left){
+        buildNode(node.left,strArr);
+    }
+}
+
+function buildRight(node,strArr){
+    if(strArr.length === 0) return;
+    let value = strArr.shift();
+    if(value !== '#'){
+        node.right = newNode(value);
+    }
+    if(node.right){
+        buildNode(node.right,strArr);
+    }
+}
+
+function buildNode(node,strArr){
+    buildLeft(node,strArr);
+    buildRight(node,strArr);
+}
+
+//为空的话用'null'表示
+function unserialByPre(strArr,root,curNode){
+    let value = strArr.shift();
+    if(!root){
+        root = newNode(value);
+    }
+
+    buildNode(root);
+    return root;
+
+}
+
+
+test();
+function test(){
+    let root = newNode(1);
+    root.left = newNode(2);
+    root.right = newNode(3);
+
+    root.left.left = newNode(4);
+    root.left.right = newNode(5);
+    root.left.right.right = newNode(6);
+
+    root.right.left = newNode(7);
+    root.right.right = newNode(8);
+    root.right.right.left = newNode(9);
+    root.right.right.left.left = newNode(10);
+
+    let str = serialByPre(root);
+    console.log(`str = ${str}`);
 
 }
