@@ -1,0 +1,3 @@
+process.cwd是指当前node命令执行时所在的文件夹目录；
+__dirname是指被执行js文件所在的文件夹目录
+
