@@ -6,11 +6,14 @@ function Node(value){
         right:null
     }
 }
-
+/*
+任意2点的最近的公共祖先节点
+*/
 function lowestAncestor(node,t1,t2){
     if(node === null || node ===t1 ||node===t2){
         return node;
     }
+    
     let left = lowestAncestor(node.left,t1,t2);
     let right = lowestAncestor(node.right,t1,t2);
     if(left!==null && right!==null){
@@ -27,7 +30,7 @@ function lowestAncestor(node,t1,t2){
     //return left!==null?left:right;
 }
 
-//
+//获取 中序遍历的下一个节点!!
 function getNextNodeForMiddleOrder(node){
     /*
     node.left;

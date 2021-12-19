@@ -17,16 +17,24 @@
     },
     "homepage": "https://github.com/wuguang/practise-algorithm#readme",
     "dependencies": {
-        "create-react-app": "^5.0.0",
         "data-struct-js": "0.0.15",
         "express": "^4.17.1"
     },
     "devDependencies": {
+        "css-loader": "^6.5.1",
+        "file-loader": "^6.2.0",
         "globby": "^12.0.2",
+        "html-loader": "^3.0.1",
+        "html-webpack-plugin": "^5.5.0",
+        "less": "^4.1.2",
+        "less-loader": "^10.2.0",
         "promises-aplus-tests": "^2.1.2",
         "schema-utils": "^4.0.0",
+        "style-loader": "^3.3.1",
         "tapable": "^2.2.1",
+        "url-loader": "^4.1.1",
         "webpack": "^5.64.4",
-        "webpack-cli": "^4.9.1"
+        "webpack-cli": "^4.9.1",
+        "webpack-dev-server": "^4.6.0"
     }
 }
