@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
-    entry:['/src/js/index.js','./src/index.html'],
+    entry:['/src/js/index.js'],
     output:{
         filename:'js/build.js',
         path:resolve(__dirname,'build')
@@ -21,24 +21,24 @@ module.exports = {
                 use:['style-loader','css-loader']
             },
             {
+                loader:'file-loader',
+                options:{
+                     name:'[hash:10].[ext]',
+                    // outputPath:'media'
+                }
+             },
+            {
                 test:/\.(jpg|png|gif)$/,
                 loader:'url-loader',
                 options:{
-                    limit:8*1024,
+                    limit:50*1024,
                     name:'[hash:10].[ext]',
-                    esModule:false,
-                    outputPath:'imgs'
+                   // esModule:false,
+                   // outputPath:'imgs'
                 }
             },{
                 test:/\.html$/,
                 loader:'html-loader'
-            },{
-                exclude:/\.(html|js|css|less|jpg|png|gif)/,
-                loader:'file-loader',
-                options:{
-                    name:'[hash:10].[ext]',
-                    outputPath:'media'
-                }
             }
         ]
     },
