@@ -14,5 +14,8 @@ module.exports = {
             from:'public',
             ignore:['index.html']
         })
-    ]
+    ],
+    devServer:{
+        
+    }
 }
