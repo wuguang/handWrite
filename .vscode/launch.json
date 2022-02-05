@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch FindFirstNode",
+            "request": "launch",
+            "mainClass": "FindFirstNode",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
+            "name": "Launch Problem_01_SwapWithoutTmp",
+            "request": "launch",
+            "mainClass": "class4.Problem_01_SwapWithoutTmp",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
             "name": "Launch FindNumber3",
             "request": "launch",
             "mainClass": "FindNumber3",
