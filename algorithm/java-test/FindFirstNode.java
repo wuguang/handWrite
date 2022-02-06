@@ -86,9 +86,6 @@ public class FindFirstNode{
         }
         //得到 n1-n2的长度 n,及n2的尾结点 cur2
 
-        if(cur1 != cur2){
-            return null;
-        }
 
         if(n>0){
             //链表1长，

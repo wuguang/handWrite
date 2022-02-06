@@ -2,6 +2,34 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch LowCommonAncestor",
+            "request": "launch",
+            "mainClass": "LowCommonAncestor",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
+            "name": "Launch IsFullTree",
+            "request": "launch",
+            "mainClass": "IsFullTree",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
+            "name": "Launch BiarySearchTree",
+            "request": "launch",
+            "mainClass": "BiarySearchTree",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
+            "name": "Launch Problem_01_GetMinStack",
+            "request": "launch",
+            "mainClass": "class1.Problem_01_GetMinStack",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
             "name": "Launch FindFirstNode",
             "request": "launch",
             "mainClass": "FindFirstNode",
