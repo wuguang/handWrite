@@ -35,6 +35,5 @@ public class Code03_IsLands {
         infect(i-1,j,m,N,M);
         infect(i,j+1,m,N,M);
         infect(i,j-1,m,N,M);
-
     }
 }

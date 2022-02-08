@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Code02_MaxDistance",
+            "request": "launch",
+            "mainClass": "Code02_MaxDistance",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
+            "name": "Launch Code_kmp",
+            "request": "launch",
+            "mainClass": "Code_kmp",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
             "name": "Launch PaperFolding",
             "request": "launch",
             "mainClass": "PaperFolding",
