@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Morris",
+            "request": "launch",
+            "mainClass": "Morris",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
+            "name": "Launch Code03_MaxHappy",
+            "request": "launch",
+            "mainClass": "Code03_MaxHappy",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
             "name": "Launch Code02_MaxDistance",
             "request": "launch",
             "mainClass": "Code02_MaxDistance",
