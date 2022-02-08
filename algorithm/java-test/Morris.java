@@ -13,8 +13,9 @@ public class Morris {
         tree.left.left.left = new Node(6);
         tree.left.left.right = new Node(7);
 
-        //byMorris(tree);
-        morrisPos(tree);
+        //byMorrisSelf(tree);
+        morrisPre(tree);
+        byMorrisSelf(tree);
 
     }
 
@@ -67,6 +68,8 @@ public class Morris {
         return pre;
     }
 
+
+    // morris 前序遍历
     public static void morrisPre(Node head) {
         if(head == null){
             return;
@@ -75,7 +78,9 @@ public class Morris {
         Node mostRight = null;
         while (cur != null){
             // cur表示当前节点，mostRight表示cur的左孩子的最右节点
+            // 没有最右节点的话，就是 cur.left 自己
             mostRight = cur.left;
+
             if(mostRight != null){
                 // cur有左孩子，找到cur左子树最右节点
                 while (mostRight.right !=null && mostRight.right != cur){
@@ -85,17 +90,22 @@ public class Morris {
                 if(mostRight.right == null){
                     mostRight.right = cur;
                     System.out.print(cur.value+" ");
+                    //转移到下一个 节点
                     cur = cur.left;
+                    // 进入下一次循环
                     continue;
                 }else {
                     // mostRight的右孩子指向cur，让其指向空，cur向右移动
                     mostRight.right = null;
                 }
+
             }else {
                 System.out.print(cur.value + " ");
             }
+
             cur = cur.right;
         }
+
         System.out.println();
     }
 
@@ -125,40 +135,44 @@ public class Morris {
         }
         System.out.println();
     }
-    public static void byMorris(Node head){
+    public static void byMorrisSelf(Node head){
 
         if(head == null){
             return;
         }
         
         Node cur = head;
+
         while(cur !=null){
-            System.out.print("; " + cur.value);
+            
             //有左侧节点
             if(cur.left != null){
+                
                 //找到最左侧的最右节点
                 Node lastRightNode = cur.left;
-                while(lastRightNode.right != null){
+                while(lastRightNode.right != null && lastRightNode.right != cur){
                     lastRightNode = lastRightNode.right;
                 }
 
                 if(lastRightNode.right == null){
+                    System.out.print(cur.value+" ");
                     lastRightNode.right = cur;   
                     cur = cur.left;
                 }else if(lastRightNode.right == cur){
                     lastRightNode.right = null;
                     cur = cur.right;
                 }
-
             }else{
+                System.out.print(cur.value + " ");
                 //没有左侧节点
                 //找右节点
                 cur = cur.right;
+                
             }
         }
     }
 
-    public static void byMorris02(Node head){
+    public static void byMorrisSelf02(Node head){
 
         if(head == null){
             return;
