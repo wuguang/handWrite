@@ -15,8 +15,49 @@ public class Morris {
 
         //byMorrisSelf(tree);
         morrisPre(tree);
-        byMorrisSelf(tree);
+        morrisPreSelf(tree);
+        //byMorrisSelf(tree);
 
+    }
+
+    public static void morrisPreSelf(Node head){
+        if(head == null){
+            return;
+        }
+        //先序先是自己
+        Node cur = head;
+        while(cur!=null){
+            //有左节点
+            if(cur.left != null){
+                Node mostRight = cur.left;
+                //最右
+                while(mostRight.right != null && mostRight.right != cur){
+                    mostRight = mostRight.right;
+                }
+
+                if(mostRight.right == cur){
+                    mostRight.right = null;
+                    cur = cur.right;
+                    continue;
+                }
+
+                // 此处mostRight.right == null
+                // 一定
+                // mostRight.right == null
+                //System.out.println("mostRight = " + mostRight.value+ " ,cur = " + cur.value);
+                //找到左右节点
+                //挂上指针
+                mostRight.right = cur;
+                // 确认是自己才打印自己 
+                System.out.print(cur.value + " ");
+                cur = cur.left;
+            }else{
+                //没有左节点
+                //直接找右节点
+                System.out.print(cur.value + " ");
+                cur = cur.right;
+            }
+        }
     }
 
     public static void morrisPos(Node head) {
@@ -116,12 +157,16 @@ public class Morris {
         }
         Node cur = head;
         Node mostRight = null;
+
         while (cur != null){
             mostRight = cur.left;
+
             if(mostRight != null){
+
                 while (mostRight.right !=null && mostRight.right != cur){
                     mostRight = mostRight.right;
                 }
+
                 if(mostRight.right == null){
                     mostRight.right = cur;
                     cur = cur.left;
@@ -129,12 +174,15 @@ public class Morris {
                 }else {
                     mostRight.right = null;
                 }
+                
             }
+
             System.out.print(cur.value+" ");
             cur = cur.right;
         }
         System.out.println();
     }
+
     public static void byMorrisSelf(Node head){
 
         if(head == null){
