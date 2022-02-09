@@ -4,7 +4,8 @@
     "description": "my-practise-algorithm",
     "main": "index.js",
     "scripts": {
-        "start": "node --inspect-brk ../node_modules/webpack/bin/webpack.js"
+        "start":"webpack-dev-server",
+        "start02": "node --inspect-brk ../node_modules/webpack/bin/webpack.js"
     },
     "repository": {
         "type": "git",
