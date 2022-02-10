@@ -3,21 +3,82 @@ public class Morris {
     public static void main(String[] args){
 
         Node tree = new Node(1);
-
         tree.left = new Node(2);
         tree.right = new Node(3);
-
         tree.left.left = new Node(4);
         tree.left.right = new Node(5);
-
         tree.left.left.left = new Node(6);
         tree.left.left.right = new Node(7);
-
         //byMorrisSelf(tree);
         morrisPos(tree);
-        morrisPosSelf(tree);
+        morriesPosSelf02(tree);
         //byMorrisSelf(tree);
 
+    }
+
+    public static void morriesPosSelf02(Node head){
+        if(head == null){
+            return;
+        }
+        Node cur = head;
+        while(cur !=null){
+            Node leftNode = cur.left;
+            if(leftNode != null){
+                Node rightEstNode = leftNode;
+                while(rightEstNode.right != null && rightEstNode.right != cur){
+                    rightEstNode = rightEstNode.right;
+                }
+
+                if(rightEstNode.right == null){
+                    rightEstNode.right = cur;
+                    // cur第一次来
+                    cur = cur.left;
+                }else{
+                    rightEstNode.right = null;
+                    printLeftOrder(cur.left);
+                    //cur 第二次来
+                    cur = cur.right;
+                }
+            }else{
+                cur = cur.right;
+            }
+        }
+        printLeftOrder(head);
+    }
+
+    public static void printLeftOrder(Node leftNode){
+        if(leftNode == null){
+            return;
+        }
+        leftNode = reverseRightNode(leftNode);
+
+        Node cur = leftNode;
+        while(cur!=null){
+            System.out.print(cur.value + " ");
+            cur = cur.right;
+        }
+
+        reverseRightNode(leftNode);
+    }
+
+    public static Node reverseRightNode(Node leftNode){
+        Node cur = leftNode;
+        Node next = null;
+        //最有节点逆序
+        if(cur.right != null){
+            next = cur.right;
+            Node nextNext = next.right;
+            //逆序，即我的下一个指向我
+            //我只想null
+            next.right = cur;
+
+            //重新迭代
+            cur = next;
+            next = nextNext;
+        }
+
+        leftNode.right = null;
+        return cur;
     }
 
     public static void morrisPosSelf(Node head){
@@ -56,7 +117,6 @@ public class Morris {
                 //一定会有右节点
                 // 如果没有前面的程序会自动添加（建立）
                 //System.out.print(cur.value + " ");
-
                 cur = cur.right;
             }
         }
