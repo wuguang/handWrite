@@ -14,47 +14,162 @@ public class Morris {
         tree.left.left.right = new Node(7);
 
         //byMorrisSelf(tree);
-        morrisPre(tree);
-        morrisPreSelf(tree);
+        morrisPos(tree);
+        morrisPosSelf(tree);
         //byMorrisSelf(tree);
 
     }
 
-    public static void morrisPreSelf(Node head){
+    public static void morrisPosSelf(Node head){
         if(head == null){
+            //中断执行
             return;
         }
-        //先序先是自己
         Node cur = head;
-        while(cur!=null){
-            //有左节点
-            if(cur.left != null){
-                Node mostRight = cur.left;
-                //最右
-                while(mostRight.right != null && mostRight.right != cur){
-                    mostRight = mostRight.right;
+        while(cur !=null){
+            if(cur.left !=null){
+                Node rightEstNode = cur.left;
+                //继续寻找最右介节点
+                // 如果cur是第二次来到，那么就会进入右节点的死循环，这里需要右终止的判断
+                // 
+                while(rightEstNode.right != null && rightEstNode.right !=cur){
+                    rightEstNode = rightEstNode.right;
                 }
 
-                if(mostRight.right == cur){
-                    mostRight.right = null;
+                // 到这里就二种情况了
+                // 要没第一次来到 就rightEstNode.right == null
+                // 要没第二次来到 就rightEstNode.right == cur
+                if(rightEstNode.right == null){
+                    // 找到了最右节点了
+                    // 后面没有右节点了，建立右节点保证可以回到cur节点
+                    rightEstNode.right = cur;
+                    cur = cur.left;
+                }else{
+                    //第二次来打印 该节点的左节点的最右节点边界的逆序
+                    rightEstNode.right = null;
+                    printEdge02(cur.left);
+                    //System.out.print(cur.value + " ");
+                    // 寻找下一个 找右节点
                     cur = cur.right;
-                    continue;
+                }
+            }else{
+                //一定会有右节点
+                // 如果没有前面的程序会自动添加（建立）
+                //System.out.print(cur.value + " ");
+
+                cur = cur.right;
+            }
+        }
+        //结束时打印整棵树的右边界逆序
+        printEdge02(head);
+        System.out.println(" ");
+    }
+
+    // 逆序打印该节点右边界 
+    public static void printEdge02(Node node){
+        Node tail = reverseEdge(node);
+        Node cur = tail;
+        while (cur != null ){
+            System.out.print(cur.value+" ");
+            cur =cur.right;
+        }
+        reverseEdge(tail);
+    }
+
+    public static Node reverseEdge02(Node node){
+        Node pre = null;
+        Node next = null;
+
+        next = node.right;
+        node.right = null;
+        pre = node;
+
+        while (node != null){
+            next = node.right;
+            node.right = pre;
+            pre = node;
+            node = next;
+        }
+        return pre;
+    }
+
+    public static void morrisInSelf(Node head){
+        if(head == null){
+            //中断执行
+            return;
+        }
+        Node cur = head;
+        while(cur !=null){
+            if(cur.left !=null){
+                Node rightEstNode = cur.left;
+                //继续寻找最右介节点
+                // 如果cur是第二次来到，那么就会进入右节点的死循环，这里需要右终止的判断
+                // 
+                while(rightEstNode.right != null && rightEstNode.right !=cur){
+                    rightEstNode = rightEstNode.right;
                 }
 
-                // 此处mostRight.right == null
-                // 一定
-                // mostRight.right == null
-                //System.out.println("mostRight = " + mostRight.value+ " ,cur = " + cur.value);
-                //找到左右节点
-                //挂上指针
-                mostRight.right = cur;
-                // 确认是自己才打印自己 
-                System.out.print(cur.value + " ");
-                cur = cur.left;
+                // 到这里就二种情况了
+                // 要没第一次来到 就rightEstNode.right == null
+                // 要没第二次来到 就rightEstNode.right == cur
+                if(rightEstNode.right == null){
+                    // 找到了最右节点了
+                    // 后面没有右节点了，建立右节点保证可以回到cur节点
+                    rightEstNode.right = cur;
+                    cur = cur.left;
+                }else{
+                    //第二次来 不打印
+                    rightEstNode.right = null;
+                    System.out.print(cur.value + " ");
+                    // 寻找下一个 找右节点
+                    cur = cur.right;
+                }
             }else{
-                //没有左节点
-                //直接找右节点
+                //一定会有右节点
+                // 如果没有前面的程序会自动添加（建立）
                 System.out.print(cur.value + " ");
+                cur = cur.right;
+            }
+        }
+        System.out.println(" ");
+    }
+
+
+    public static void morrisPreSelf(Node head){
+        if(head == null){
+            //中断执行
+            return;
+        }
+        Node cur = head;
+        while(cur !=null){
+            if(cur.left !=null){
+                Node rightEstNode = cur.left;
+                //继续寻找最右介节点
+                // 如果cur是第二次来到，那么就会进入右节点的死循环，这里需要右终止的判断
+                // 
+                while(rightEstNode.right != null && rightEstNode.right !=cur){
+                    rightEstNode = rightEstNode.right;
+                }
+
+                // 到这里就二种情况了
+                // 要没第一次来到 就rightEstNode.right == null
+                // 要没第二次来到 就rightEstNode.right == cur
+                if(rightEstNode.right == null){
+                    // 找到了最右节点了
+                    // 后面没有右节点了，建立右节点保证可以回到cur节点
+                    rightEstNode.right = cur;
+                    System.out.print(" " + cur.value);
+                    cur = cur.left;
+                }else{
+                    //第二次来 不打印
+                    rightEstNode.right = null;
+                    // 寻找下一个 找右节点
+                    cur = cur.right;
+                }
+            }else{
+                //一定会有右节点
+                // 如果没有前面的程序会自动添加（建立）
+                System.out.print(" " + cur.value);
                 cur = cur.right;
             }
         }

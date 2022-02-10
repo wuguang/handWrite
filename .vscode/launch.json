@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Morris",
+            "request": "launch",
+            "mainClass": "Morris",
+            "projectName": "handWrite_e99d0f77"
+        },
+        {
+            "type": "java",
             "name": "Launch MaxTriaggleNums",
             "request": "launch",
             "mainClass": "MaxTriaggleNums",
