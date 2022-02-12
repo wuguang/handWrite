@@ -1,7 +1,6 @@
 public class Morris {
 
     public static void main(String[] args){
-
         Node tree = new Node(1);
         tree.left = new Node(2);
         tree.right = new Node(3);
@@ -9,11 +8,86 @@ public class Morris {
         tree.left.right = new Node(5);
         tree.left.left.left = new Node(6);
         tree.left.left.right = new Node(7);
+
+        
+        tree.left.left.right.right = new Node(8);
+        tree.left.left.right.right.right = new Node(9);
+        tree.left.left.right.right.right.left = new Node(10);
+        tree.left.left.right.right.right.left.left = new Node(11);
+        tree.left.left.right.right.right.left.left.right = new Node(12);
+        tree.left.left.right.right.right.left.left.right.right = new Node(13);
+        tree.left.left.right.right.right.left.left.right.right.right = new Node(14);
+        
+        
         //byMorrisSelf(tree);
         morrisPos(tree);
         morriesPosSelf02(tree);
+        morriesPosSelf03(tree);
         //byMorrisSelf(tree);
+    }
 
+    public static void morriesPosSelf03(Node head){
+        System.out.println(" ");
+        if(head == null){
+            return;
+        }
+        Node cur = head;
+        while(cur!=null){
+            Node leftNode = cur.left;
+            if(leftNode!=null){
+                Node rightEstNode = leftNode;
+                while(rightEstNode.right != null && rightEstNode.right != cur){
+                    rightEstNode = rightEstNode.right;
+                }
+                if(rightEstNode.right == null){
+                    //第一册遍历自己
+                    //rightEstNode.right == null true
+                    rightEstNode.right = cur;
+                    //遍历自己
+                    cur = cur.left;
+                }else{
+                    rightEstNode.right = null;
+                    printPosLeftNode(leftNode);
+                    // 第二次进入自己
+                    cur = cur.right;
+                }
+            }else{
+                //没有左节点的 遍历顺序
+                // 先自己，在下一个，
+                //下一个是右节点
+                cur = cur.right;
+            }
+        }
+        printPosLeftNode(head);
+    }
+
+    public static void printPosLeftNode(Node leftNode){
+
+        leftNode = reverseRightNode02(leftNode);
+        Node cur = leftNode;
+        while(cur !=null){
+            System.out.print(cur.value + " ");
+            cur = cur.right;
+        }
+
+        reverseRightNode02(leftNode);
+    }
+
+    public static Node reverseRightNode02(Node leftNode){
+        if(leftNode == null){
+            return leftNode;
+        }
+        Node cur = leftNode;
+        Node next = null;
+        Node pre = null;
+        while(cur != null){
+            next = cur.right;
+            cur.right = pre;
+            pre = cur;
+            cur = next;
+        }
+
+        return pre;
     }
 
     public static void morriesPosSelf02(Node head){
@@ -57,28 +131,23 @@ public class Morris {
             System.out.print(cur.value + " ");
             cur = cur.right;
         }
-
         reverseRightNode(leftNode);
     }
 
     public static Node reverseRightNode(Node leftNode){
         Node cur = leftNode;
         Node next = null;
+        Node pre = null;
         //最有节点逆序
-        if(cur.right != null){
+        while(cur != null){
             next = cur.right;
-            Node nextNext = next.right;
-            //逆序，即我的下一个指向我
-            //我只想null
-            next.right = cur;
+            cur.right = pre;
 
             //重新迭代
+            pre = cur;
             cur = next;
-            next = nextNext;
         }
-
-        leftNode.right = null;
-        return cur;
+        return pre;
     }
 
     public static void morrisPosSelf(Node head){
