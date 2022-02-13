@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Stock",
+            "request": "launch",
+            "mainClass": "Stock",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
             "name": "Launch BinaryTreeMy",
             "request": "launch",
             "mainClass": "BinaryTreeMy",
