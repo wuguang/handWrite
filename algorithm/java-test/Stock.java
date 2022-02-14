@@ -1,14 +1,9 @@
 /*
 
 买卖一次: 121. Best Time to Buy and Sell Stock
-
 给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。
 你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子 卖出该股票。设计一个算法来计算你所能获取的最大利润。
 返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0 。
-
-
-
-
 
 2
 给定一个数组 prices ，其中 prices[i] 表示股票第 i 天的价格。
@@ -44,20 +39,17 @@
 
 
 
-
 不限买卖次数: 122. Best Time to Buy and Sell Stock II
 买卖两次: 123. Best Time to Buy and Sell Stock III
 买卖k次: 188. Best Time to Buy and Sell Stock IV
 带有冷却的股票买卖问题: 309. Best Time to Buy and Sell Stock with Cooldown
 带有交易费用的股票买卖问题: 714. Best Time to Buy and Sell Stock with Transaction Fee
-
-
 */
 
 public class Stock{
 
-    //03   leetcode#188
-    // 不限交易次数
+    // stock 03   leetcode#188
+    // 限制交易次数k次
     public static int maxProfitUseDp03(int[] prices,int k){
         if(prices.length<1){
             return 0;
@@ -66,21 +58,61 @@ public class Stock{
             return 0;
         }
         int days = prices.length;
+
         // k 交易次数
         int [][] dp = new int[k+1][2];
         for(int i=0; i<days; i++){
             //dp[i][1] = Math.max(); 
+
             dp[0][0] = 0;
             dp[0][1] = Integer.MIN_VALUE;
+
             for(int t=1;t<k; t++){
                 //持仓
                 dp[t][1] = Math.max(dp[t][1], dp[t-1][0]-prices[i]);
                 dp[t][0] = Math.max(dp[t][0],dp[t][1] + prices[i]);
             }
+
         }
         System.out.println("dp[k][0] = " + dp[k-1][0]);
         //交易k 次后最高收入;
         return dp[k-1][0];        
+    }
+
+    //限制交易 k次
+    public static int maxProfitUseDp0302(int[] prices,int k){
+        if(prices.length<1){
+            return 0;
+        }
+        if(k<1){
+            return 0;
+        }
+        // profitStatus
+        int days = prices.length;
+        int [][][] ps = new int[days+1][k+1][2];
+
+        ps[0][0][0] = 0;
+        ps[0][0][1] = Integer.MIN_VALUE;
+
+        ps[0][1][0] = 0;
+        ps[0][1][1] = 0;
+
+        // d; 第几天，人类理解的顺序天数
+        // t; 交易次数，人类理解次数
+        for(int d=1; d<days+1; d++){
+            for(int t=1; t<k+1; t++){
+                ps[d][t][0] = Math.max(ps[d-1][t][0],ps[d-1][t][1] + prices[d-1]);
+                ps[d][t][1] = Math.max(ps[d-1][t][1],ps[d-1][t-1][0] - prices[d-1]);
+
+                System.out.println("ps["+d+"]["+t+"][0] =" + ps[d][t][0]);
+                System.out.println("ps["+d+"]["+t+"][1] =" + ps[d][t][1]);
+            }
+        }
+
+        System.out.println("ps[days][k][0] = " + ps[days][k][0]);
+        //在days后，经过k次交易，空仓状态下，我的收入是多少
+        return ps[days][k][0];  
+        
     }
 
     public static int maxProfit03(int[] prices,int k) {
@@ -104,34 +136,6 @@ public class Stock{
         System.out.println("max = " + max);
         return max;
       }
-
-
-    public static int maxProfitUseSort03(int[] prices,int k) {
-        if (prices.length==0)return 0;
-        int n = prices.length;
-        
-        /*
-        k = Math.min(k,n/2);
-        int[][] buy = new int[n][k+1];
-        int[][] sell = new int[n][k+1];
-        buy[0][0] = -prices[0];
-        for (int i = 1; i <= k; i++) 
-            buy[0][i] = sell[0][i] = Integer.MIN_VALUE/2;   //表示在刚开始就已有交易产生，不合逻辑，设置为负数边界
-        int max = 0;
-        for (int i = 1; i < n; i++) {
-            buy[i][0] = Math.max(buy[i-1][0],sell[i-1][0]-prices[i]);
-            for (int j = 1; j <= k; j++) {
-                buy[i][j] = Math.max(buy[i-1][j],sell[i-1][j]-prices[i]);
-                sell[i][j] = Math.max(sell[i-1][j],buy[i-1][j-1]+prices[i]);
-                max = Math.max(max,sell[i][j]);
-            }
-        }
-        System.out.println("max = " + max);
-        return max;
-        */
-    }
-
-
 
     /*
     第三种方法：DP动态规划，第i天只有两种状态，不持有或持有股票，当天不持有股票的状态可能来自昨天卖出或者昨天也不持有，同理，当天持有股票的状态可能来自昨天买入或者昨天也持有中，取最后一天的不持有股票状态就是问题的解
@@ -168,7 +172,7 @@ public class Stock{
         return dp[days-1][0];
     }
 
-       //02
+    // 02
     // 不限交易次数
     public static int maxProfitUseTech02(int[] prices){
         if(prices.length<1){
@@ -228,7 +232,9 @@ public class Stock{
 
 
     public static void main(String[] args){
+
         int [] prices = {8,3,4,6,7,9,12,3,23,12,3,13,15,56,18,12,5,1,36};
+
         /*
         maxProfitUseLoop01(prices);
         maxProfitUseDp01(prices);
@@ -239,5 +245,6 @@ public class Stock{
 
         maxProfitUseDp03(prices,5);
         maxProfit03(prices,5);
+        maxProfitUseDp0302(prices,5);
     }
 }

@@ -5,6 +5,13 @@
             "name": "Launch Stock",
             "request": "launch",
             "mainClass": "Stock",
+            "projectName": "handWrite_e99d0f77"
+        },
+        {
+            "type": "java",
+            "name": "Launch Stock",
+            "request": "launch",
+            "mainClass": "Stock",
             "projectName": "handWrite_84d503e9"
         },
         {
