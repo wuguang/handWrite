@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Code02_robwalk",
+            "request": "launch",
+            "mainClass": "Code02_robwalk",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
             "name": "Launch Stock",
             "request": "launch",
             "mainClass": "Stock",
