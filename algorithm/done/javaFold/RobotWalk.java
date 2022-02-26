@@ -1,4 +1,5 @@
-public class Code02_robwalk {
+
+public class RobotWalk {
 
     // N 个位置[1,N] 必须是1到N,每次robot可以向左或向右移动, 1只能往右移，N只能往左移
     // E 结束位置
