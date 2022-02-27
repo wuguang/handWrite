@@ -103,20 +103,23 @@ public class Sort {
         //i,j,k
         for(int gap=len/2;gap>0;gap/=2){
             //从第二个元素开始
-            for(int i=gap;i<=len-2;i+=gap){
+            for(int i=gap;i<=len-1;i+=gap){
                 //arr[i]
                 int minIndex = i;
+                //前面一个数
                 int j = i-gap;
-                while(arr[j]>arr[minIndex] && j>=0){
+                while(j>=0 && arr[j]>arr[minIndex] ){
                     swap(arr,minIndex,j);
                     minIndex = j;
                     j -= gap;
                 }
             }
         }
-
         return arr;
     }
+
+
+    //并归排序
 
 
     public static void swap(int[] arr,int i,int j){
@@ -126,9 +129,9 @@ public class Sort {
     }
 
     public static void main(String[] args){
-        int[] arr = {12,13,5,67,9,13,56,1,3,12,3,4,1,5,6,3,5,8};
+        int[] arr = {12,13,5,67,9,13,56,1,3,12,3,4,1,5,6,3,5,8,142,16,19};
         //bubbleSort(arr);
-        insertionSort(arr);
+        shellSort(arr);
         for(int i=0; i<arr.length; i++){
             System.out.print(arr[i] + "  ");
         }
