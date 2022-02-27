@@ -4,7 +4,7 @@
     "description": "my-practise-algorithm",
     "main": "index.js",
     "scripts": {
-        "start": "node --inspect-brk ./class5/printAllFolds.js"
+        "start": "node --inspect-brk ./src/other/link.js"
     },
     "repository": {
         "type": "git",

@@ -5,6 +5,13 @@
             "name": "Launch Sort",
             "request": "launch",
             "mainClass": "Sort",
+            "projectName": "handWrite_43efec23"
+        },
+        {
+            "type": "java",
+            "name": "Launch Sort",
+            "request": "launch",
+            "mainClass": "Sort",
             "projectName": "handWrite_84d503e9"
         },
         {
