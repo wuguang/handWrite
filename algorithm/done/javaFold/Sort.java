@@ -141,6 +141,10 @@ public class Sort {
         int i = left;
         int j = mid+1;
         int t = 0;
+
+        for(int k=left; k<=right; k++){
+            System.out.print(", ["+ k + "]=" + arr[k]);
+        }
  
         //各自从自己的起始点，到各自数组的终点
         while(i<=mid && j <= right){
@@ -164,19 +168,26 @@ public class Sort {
             t++;
         }
 
+        System.out.println("");
+        System.out.println("------------------------------");
+        for(int k=left; k<=right; k++){
+            System.out.print(", ["+ k + "]=" + arr[k]);
+        }
+        System.out.println("");
+        System.out.println("################################");
+
         //将tempArr 复制到 arr
         int tempLeft = left;
         t = 0;
-        System.out.println("start-------");
+        //System.out.println("start-------");
         while(tempLeft <= right){
             arr[tempLeft] = tempArr[t];
-            System.out.print(", arr[tempLeft]=" + arr[tempLeft]);
             t++;
             tempLeft ++;
-            
         }
-        System.out.println("");
-        System.out.println("end-------");
+
+ 
+        
 
     }
 
