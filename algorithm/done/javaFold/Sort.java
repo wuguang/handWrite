@@ -124,20 +124,20 @@ public class Sort {
             return arr;
         }
         //向下取整 类似Math.floor
-        int mid = left + (right - left)>>1;
-        if(mid>left){
+        
+        if(left < right){
+            int mid = left + ((right - left)>>1);
             mergeSort(arr,left,mid,tempArr);
-        }
-        if(right > mid+1){
             mergeSort(arr,mid+1,right,tempArr);
+            merge(arr,left,mid,right,tempArr);
         }
-        merge(arr,left,mid,right,tempArr);
+        
 
         return arr;
     }
 
     //递归的最后一步
-    public static int[] merge(int[] arr,int left,int mid,int right,int[] tempArr){
+    public static void merge(int[] arr,int left,int mid,int right,int[] tempArr){
         int i = left;
         int j = mid+1;
         int t = 0;
@@ -167,12 +167,17 @@ public class Sort {
         //将tempArr 复制到 arr
         int tempLeft = left;
         t = 0;
+        System.out.println("start-------");
         while(tempLeft <= right){
             arr[tempLeft] = tempArr[t];
+            System.out.print(", arr[tempLeft]=" + arr[tempLeft]);
             t++;
             tempLeft ++;
+            
         }
-        return  tempArr;
+        System.out.println("");
+        System.out.println("end-------");
+
     }
 
 
@@ -187,7 +192,7 @@ public class Sort {
         int[] arr = {12,13,5,67,9,13,56,1,3,12,3,4,1,5,6,3,5,8,142,16,19};
         //bubbleSort(arr);
         int [] tempArr = new int[arr.length];
-        mergeSort(arr,0,arr.length,tempArr);
+        mergeSort(arr,0,arr.length-1,tempArr);
         for(int i=0; i<arr.length; i++){
             System.out.print(arr[i] + "  ");
         }
