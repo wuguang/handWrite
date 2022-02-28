@@ -20,7 +20,7 @@ public class Sort {
 
     //选择排序
     public static int[] selectionSort(int [] arr){
-        if(arr.length<=1){
+        if(arr==null || arr.length<=1){
             return arr;
         }
         int len = arr.length;
@@ -42,7 +42,7 @@ public class Sort {
     //插入排序
     //任务前面是排好序的，找到合适的地方，插入进去
     public static int [] insertionSort(int[] arr){
-        if(arr.length<=1){
+        if(arr==null || arr.length<=1){
             return arr;
         }
         int len = arr.length;
@@ -71,7 +71,7 @@ public class Sort {
         //插入排序
     //任务前面是排好序的，找到合适的地方，插入进去
     public static int [] insertionSort02(int[] arr){
-        if(arr.length<=1){
+        if(arr==null || arr.length<=1){
             return arr;
         }
         int len = arr.length;
@@ -96,7 +96,7 @@ public class Sort {
     //希尔排序
     //第一个突破O(n^2)的算法
     public static int[] shellSort(int [] arr){
-        if(arr.length<=1){
+        if(arr==null || arr.length<=1){
             return arr;
         }
         int len = arr.length;
@@ -118,10 +118,65 @@ public class Sort {
         return arr;
     }
 
+    //归并排序
+    public static int[] mergeSort(int[] arr,int left,int right,int[] tempArr){
+        if(arr == null || arr.length<=1){
+            return arr;
+        }
+        //向下取整 类似Math.floor
+        int mid = left + (right - left)>>1;
+        if(mid>left){
+            mergeSort(arr,left,mid,tempArr);
+        }
+        if(right > mid+1){
+            mergeSort(arr,mid+1,right,tempArr);
+        }
+        merge(arr,left,mid,right,tempArr);
+
+        return arr;
+    }
+
+    //递归的最后一步
+    public static int[] merge(int[] arr,int left,int mid,int right,int[] tempArr){
+        int i = left;
+        int j = mid+1;
+        int t = 0;
+ 
+        //各自从自己的起始点，到各自数组的终点
+        while(i<=mid && j <= right){
+            if(arr[i]<=arr[j]){
+                tempArr[t] = arr[i];
+                i++;
+            }else{
+                tempArr[t] = arr[j];
+                j++;
+            }
+            t++;
+        }
+        while(i<=mid){
+            tempArr[t] = arr[i];
+            i++;
+            t++;
+        }
+        while(j<=right){
+            tempArr[t] = arr[i];
+            j++;
+            t++;
+        }
+
+        //将tempArr 复制到 arr
+        int tempLeft = left;
+        t = 0;
+        while(tempLeft <= right){
+            arr[tempLeft] = tempArr[t];
+            t++;
+            tempLeft ++;
+        }
+        return  tempArr;
+    }
+
 
     //并归排序
-
-
     public static void swap(int[] arr,int i,int j){
         int temp = arr[i];
         arr[i] = arr[j];
@@ -131,7 +186,8 @@ public class Sort {
     public static void main(String[] args){
         int[] arr = {12,13,5,67,9,13,56,1,3,12,3,4,1,5,6,3,5,8,142,16,19};
         //bubbleSort(arr);
-        shellSort(arr);
+        int [] tempArr = new int[arr.length];
+        mergeSort(arr,0,arr.length,tempArr);
         for(int i=0; i<arr.length; i++){
             System.out.print(arr[i] + "  ");
         }
