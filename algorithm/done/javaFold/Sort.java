@@ -119,7 +119,7 @@ public class Sort {
     }
 
     //归并排序
-    public static int[] mergeSort(int[] arr,int left,int right,int[] tempArr){
+    public static int[] mergeSort(int[] arr,int left,int right){
         if(arr == null || arr.length<=1){
             return arr;
         }
@@ -127,9 +127,9 @@ public class Sort {
         
         if(left < right){
             int mid = left + ((right - left)>>1);
-            mergeSort(arr,left,mid,tempArr);
-            mergeSort(arr,mid+1,right,tempArr);
-            merge(arr,left,mid,right,tempArr);
+            mergeSort(arr,left,mid);
+            mergeSort(arr,mid+1,right);
+            merge(arr,left,mid,right);
         }
         
 
@@ -137,44 +137,29 @@ public class Sort {
     }
 
     //递归的最后一步
-    public static void merge(int[] arr,int left,int mid,int right,int[] tempArr){
-        int i = left;
-        int j = mid+1;
+    public static void merge(int[] arr,int left,int mid,int right){
+        int i = left; //[left,mid]
+        int j = mid+1; //[mid+1,right]
         int t = 0;
+        int [] tempArr = new int[right-left+1];
 
-        for(int k=left; k<=right; k++){
-            System.out.print(", ["+ k + "]=" + arr[k]);
-        }
- 
         //各自从自己的起始点，到各自数组的终点
         while(i<=mid && j <= right){
+            /*
             if(arr[i]<=arr[j]){
-                tempArr[t] = arr[i];
-                i++;
+                tempArr[t++] = arr[i++];
             }else{
-                tempArr[t] = arr[j];
-                j++;
+                tempArr[t++] = arr[j++];
             }
-            t++;
+            */
+            tempArr[t++] = arr[i]<=arr[j]? arr[i++]:arr[j++];
         }
         while(i<=mid){
-            tempArr[t] = arr[i];
-            i++;
-            t++;
+            tempArr[t++] = arr[i++];
         }
         while(j<=right){
-            tempArr[t] = arr[i];
-            j++;
-            t++;
+            tempArr[t++] = arr[j++];
         }
-
-        System.out.println("");
-        System.out.println("------------------------------");
-        for(int k=left; k<=right; k++){
-            System.out.print(", ["+ k + "]=" + arr[k]);
-        }
-        System.out.println("");
-        System.out.println("################################");
 
         //将tempArr 复制到 arr
         int tempLeft = left;
@@ -185,10 +170,6 @@ public class Sort {
             t++;
             tempLeft ++;
         }
-
- 
-        
-
     }
 
 
@@ -199,11 +180,51 @@ public class Sort {
         arr[j] = temp;
     }
 
+    /*
+    荷兰国旗问题  flag of the netherlands
+    给定一个整数数组，给定一个值K，这个值在原数组中一定存在，要求把数组中小于K的元素放到数组的左边，大于K的元素放到数组的右边，等于K的元素放到数组的中间，最终返回一个整数数组，其中只有两个值，分别是等于K的数组部分的左右两个下标值。
+    例如，给定数组：[2, 3, 1, 9, 7, 6, 1, 4, 5]，给定一个值4，那么经过处理原数组可能得一种情况是：[2, 3, 1, 1, 4, 9, 7, 6, 5]，需要注意的是，小于4的部分不需要有序，大于4的部分也不需要有序，
+    返回该数组
+    等于4部分的左右两个下标，即[4, 4]
+    */
+
+    public static int [] netherlandsFlag(int [] arr,int target){
+        if(arr==null || arr.length<=1){
+            return arr;
+        }
+        //左右都处在不存在的区域,left代表左右区域的范围
+        int left = -1;
+        int right = arr.length;
+        int cur = 0;
+
+        while(cur < arr.length){
+            if(arr[cur]<target){
+                left ++;
+                if(cur != left){
+                    //将当前值放置 left 位置
+                    swap(arr,left,cur);
+                }
+                cur ++;
+            }else if(arr[cur]>target){
+                right --;
+                if(cur != right){
+                    swap(arr,right,cur);
+                }
+                cur ++;
+            }
+        }
+        
+
+        return arr;
+    }
+
+
+
     public static void main(String[] args){
-        int[] arr = {12,13,5,67,9,13,56,1,3,12,3,4,1,5,6,3,5,8,142,16,19};
+        int[] arr = {12,13,5,67,12,9,13,56,1,3,12,3,4,1,5,6,3,5,8,142,16,19};
         //bubbleSort(arr);
-        int [] tempArr = new int[arr.length];
-        mergeSort(arr,0,arr.length-1,tempArr);
+        //mergeSort(arr,0,arr.length-1);
+        netherlandsFlag(arr,12);
         for(int i=0; i<arr.length; i++){
             System.out.print(arr[i] + "  ");
         }
