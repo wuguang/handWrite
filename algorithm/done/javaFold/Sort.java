@@ -197,7 +197,7 @@ public class Sort {
         int right = arr.length;
         int cur = 0;
 
-        while(cur < arr.length){
+        while(cur < right){
             if(arr[cur]<target){
                 left ++;
                 if(cur != left){
@@ -210,9 +210,12 @@ public class Sort {
                 if(cur != right){
                     swap(arr,right,cur);
                 }
+            } else{
                 cur ++;
             }
         }
+
+        System.out.println("left=" + left + ", right = " + right);
         
 
         return arr;
