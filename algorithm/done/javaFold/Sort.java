@@ -186,8 +186,9 @@ public class Sort {
     例如，给定数组：[2, 3, 1, 9, 7, 6, 1, 4, 5]，给定一个值4，那么经过处理原数组可能得一种情况是：[2, 3, 1, 1, 4, 9, 7, 6, 5]，需要注意的是，小于4的部分不需要有序，大于4的部分也不需要有序，
     返回该数组
     等于4部分的左右两个下标，即[4, 4]
+    cur
+    right-1
     */
-
     public static int [] netherlandsFlag(int [] arr,int target){
         if(arr==null || arr.length<=1){
             return arr;
@@ -217,6 +218,47 @@ public class Sort {
 
         System.out.println("left=" + left + ", right = " + right);
         
+
+        return arr;
+    }
+
+    /*
+    快速排序
+    */
+    public static int[] quickSort(int arr[],int start,int end){
+        //
+        if(arr==null || arr.length==1){
+            return arr;
+        }
+        int len = arr.length;
+        // i 左 j右
+        // 外部初始 
+        /*
+        int i= -1;
+        int j = len-1;
+        int pivot = arr[len-1];
+        
+        pivot	英[ˈpɪvət]
+        美[ˈpɪvət]
+        n.	支点; 枢轴; 中心点; 最重要的人(或事物); 中心; 核心;
+
+        {1,5,6,2,3,4}
+        [0,2]
+        [3,5]
+        */
+        int i = start;
+        int j = end-1;
+        int pivot = arr[end-1];
+        while(i<j){
+            if(arr[i]<pivot){
+                i++;
+            }else if(arr[i]>=pivot){
+                swap(arr,i,j+1);
+            }
+
+        }
+
+
 
         return arr;
     }
