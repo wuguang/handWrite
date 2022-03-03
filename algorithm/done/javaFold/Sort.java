@@ -230,35 +230,27 @@ public class Sort {
         if(arr==null || arr.length==1){
             return arr;
         }
+
         int len = arr.length;
-        // i 左 j右
-        // 外部初始 
-        /*
-        int i= -1;
-        int j = len-1;
-        int pivot = arr[len-1];
-        
-        pivot	英[ˈpɪvət]
-        美[ˈpɪvət]
-        n.	支点; 枢轴; 中心点; 最重要的人(或事物); 中心; 核心;
-
-        {1,5,6,2,3,4}
-        [0,2]
-        [3,5]
-        */
-        int i = start;
-        int j = end-1;
-        int pivot = arr[end-1];
-        while(i<j){
+        int left = start;
+        int right = end+1;
+        int pivot = arr[end];
+        int i = 0;
+        while(i<right){
             if(arr[i]<pivot){
-                i++;
-            }else if(arr[i]>=pivot){
-                swap(arr,i,j+1);
+                swap(arr,i,left+1);
+                left++;
+            }else if(arr[i]>pivot){
+                swap(arr,i,right+1);
+                right--;
+                i--;
             }
-
         }
+        
+        //得到的结果是 左边 = [start,--i]  右边 = [j,end];
 
-
+        //quickSort(arr,start,i-1);
+        //quickSort(arr,j,end);
 
         return arr;
     }
