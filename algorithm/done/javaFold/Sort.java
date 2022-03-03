@@ -223,15 +223,15 @@ public class Sort {
     }
 
     /*
-    快速排序
+    快速排序,
+    以end 为基准点实现，
+    从左到遍历实现
     */
     public static int[] quickSort(int arr[],int start,int end){
         //
         if(arr==null || arr.length==1){
             return arr;
         }
-
-        int len = arr.length;
         int left = start-1;
         int right = end+1;
         int pivot = arr[end];
@@ -239,7 +239,6 @@ public class Sort {
         while(i<right){
             if(arr[i]<pivot){
                 left++;
-                System.out.println("i=" + i + ", left = " + left);
                 swap(arr,i,left);
                 i ++;
             }else if(arr[i]>pivot){
@@ -260,7 +259,50 @@ public class Sort {
         return arr;
     }
 
+    /*
+    左右交换 挪动指针实现
+    以左侧第一个为基准点
+    https://www.cnblogs.com/skywang12345/p/3596746.html
+    */
+    public static int[] quickSort02(int arr[],int start,int end){
+        if(arr==null || arr.length==1){
+            return arr;
+        }
 
+        int left = start;
+        int right = end;
+        int pivot = arr[start];
+        //需要遍历的指针
+        int i = start;
+
+        while(i<right){
+            while(i<right && arr[right]>pivot){
+                right --;
+            }
+            //走指针停下来
+            //交换指针内容
+            swap(arr,right,left);
+            //左指针来到，不属于在自己的底盘，停下来
+            while(i<right && arr[left]<pivot){
+                left ++;
+                i++;
+            }
+        }
+        
+        //得到的结果是 左边 = [start,--i]  右边 = [j,end];
+        if(left>=start){
+            quickSort(arr,start,i-1);
+        }
+        if(right <= end){
+            quickSort(arr,i+1 
+             ,end);
+        }
+        return arr;
+    }
+
+
+
+    
 
     public static void main(String[] args){
         int[] arr = {12,13,5,67,12,9,13,56,1,3,12,3,4,1,5,6,3,5,8,142,16,19};
