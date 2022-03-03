@@ -232,26 +232,31 @@ public class Sort {
         }
 
         int len = arr.length;
-        int left = start;
+        int left = start-1;
         int right = end+1;
         int pivot = arr[end];
-        int i = 0;
+        int i = start;
         while(i<right){
             if(arr[i]<pivot){
-                swap(arr,i,left+1);
                 left++;
+                System.out.println("i=" + i + ", left = " + left);
+                swap(arr,i,left);
+                i ++;
             }else if(arr[i]>pivot){
-                swap(arr,i,right+1);
                 right--;
-                i--;
+                swap(arr,i,right);
+            }else{
+               i++; 
             }
         }
         
         //得到的结果是 左边 = [start,--i]  右边 = [j,end];
-
-        //quickSort(arr,start,i-1);
-        //quickSort(arr,j,end);
-
+        if(left>=start){
+            quickSort(arr,start,left);
+        }
+        if(right <= end){
+            quickSort(arr,right,end);
+        }
         return arr;
     }
 
@@ -260,8 +265,9 @@ public class Sort {
     public static void main(String[] args){
         int[] arr = {12,13,5,67,12,9,13,56,1,3,12,3,4,1,5,6,3,5,8,142,16,19};
         //bubbleSort(arr);
-        //mergeSort(arr,0,arr.length-1);
-        netherlandsFlag(arr,12);
+        mergeSort(arr,0,arr.length-1);
+        //netherlandsFlag(arr,12);
+        //quickSort(arr,0,arr.length-1);
         for(int i=0; i<arr.length; i++){
             System.out.print(arr[i] + "  ");
         }
