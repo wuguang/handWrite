@@ -2,17 +2,38 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch Sort",
-            "request": "launch",
-            "mainClass": "Sort",
-            "projectName": "handWrite_e99d0f77"
-        },
-        {
-            "type": "java",
             "name": "Launch Robot",
             "request": "launch",
             "mainClass": "Robot",
-            "projectName": "handWrite_e99d0f77"
+            "projectName": "handWrite_43efec23"
+        },
+        {
+            "type": "java",
+            "name": "Launch Sort",
+            "request": "launch",
+            "mainClass": "Sort",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
+            "name": "Launch BinaryTreeTraverse",
+            "request": "launch",
+            "mainClass": "BinaryTreeTraverse",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
+            "name": "Launch ValidSign",
+            "request": "launch",
+            "mainClass": "ValidSign",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
+            "name": "Launch RobotWalk",
+            "request": "launch",
+            "mainClass": "RobotWalk",
+            "projectName": "handWrite_84d503e9"
         },
         {
             "type": "java",

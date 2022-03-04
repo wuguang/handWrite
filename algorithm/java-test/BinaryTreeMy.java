@@ -31,6 +31,9 @@ public class BinaryTreeMy {
         }
     }
 
+
+    //迭代  中序  非递归
+    /*
     public static void inOrderIteration(Node head){
         if(head == null){
             return;
@@ -46,6 +49,31 @@ public class BinaryTreeMy {
             }
             Node popNode = s.pop();
             System.out.print( popNode.value +" ");
+            //赋值 cur
+            if(popNode.right != null){
+                cur = popNode.right;
+            }
+        }
+    }
+    */
+
+    //迭代 中序  非递归
+    public static void inOrderIteration(Node head){
+        if(head == null ){
+            return;
+        }
+        Stack <Node> myStack = new Stack<>();
+        Node cur = head;
+        // myStack.push(cur);
+        // cur 是添加一子树进来的流程
+        // 一定要找到下一课子树是谁?
+        while(cur!=null){
+            while(cur!=null){
+                myStack.push(cur);
+                cur = cur.left;
+            }
+            Node popNode = myStack.pop();
+            System.out.println(popNode + " ");
             if(popNode.right != null){
                 cur = popNode.right;
             }
