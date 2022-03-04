@@ -6,7 +6,6 @@ public class Robot {
         int rest = 7;
         int result = getRobWays(p,t,cur,rest);
         System.out.println("result = " + result);
-
         //哪里越界了
         int [][] dp = new int[cur+1][rest+1];
         for(int i=0;i<cur;i++){
