@@ -38,8 +38,9 @@
         {
             "type": "java",
             "name": "Launch Sort",
+            "name": "Launch Robot",
             "request": "launch",
-            "mainClass": "Sort",
+            "mainClass": "Robot",
             "projectName": "handWrite_43efec23"
         },
         {
