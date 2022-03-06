@@ -259,57 +259,40 @@ public class Sort {
         return arr;
     }
 
-    /*
-    左右交换 挪动指针实现
-    以左侧第一个为基准点
-    https://www.cnblogs.com/skywang12345/p/3596746.html
-    */
-    public static int[] quickSort02(int arr[],int start,int end){
-        if(arr==null || arr.length==1){
-            return arr;
-        }
-
-        int left = start;
-        int right = end;
-        int pivot = arr[start];
-        //需要遍历的指针
-        int i = start;
-
-        while(i<right){
-            while(i<right && arr[right]>pivot){
-                right --;
-            }
-            //走指针停下来
-            //交换指针内容
-            swap(arr,right,left);
-            //左指针来到，不属于在自己的底盘，停下来
-            while(i<right && arr[left]<pivot){
-                left ++;
+   
+    public static void quickSort03(int[] arr, int begin, int end){
+        if(begin > end)
+            return;
+        int tmp = arr[begin];
+        int i = begin;
+        int j = end;
+        while(i != j){
+            while(arr[j] >= tmp && j > i)
+                j--;
+            while(arr[i] <= tmp && j > i)
                 i++;
+            if(j > i){
+                //交换
+                int t = arr[i];
+                arr[i] = arr[j];
+                arr[j] = t;
             }
         }
-        
-        //得到的结果是 左边 = [start,--i]  右边 = [j,end];
-        if(left>=start){
-            quickSort(arr,start,i-1);
-        }
-        if(right <= end){
-            quickSort(arr,i+1 
-             ,end);
-        }
-        return arr;
+        //6,3,2,9,2,8,3,6
+        //交换起始值
+        arr[begin] = arr[i];
+        arr[i] = tmp;
+        quickSort03(arr, begin, i-1);
+        quickSort03(arr, i+1, end);
     }
 
 
-
-    
-
     public static void main(String[] args){
-        int[] arr = {12,13,5,67,12,9,13,56,1,3,12,3,4,1,5,6,3,5,8,142,16,19};
+        int[] arr = {6,3,2,9,2,8,3,6};
         //bubbleSort(arr);
-        mergeSort(arr,0,arr.length-1);
+        //mergeSort(arr,0,arr.length-1);
         //netherlandsFlag(arr,12);
-        //quickSort(arr,0,arr.length-1);
+        netherlandsFlag(arr,6);
         for(int i=0; i<arr.length; i++){
             System.out.print(arr[i] + "  ");
         }

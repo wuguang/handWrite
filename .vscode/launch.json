@@ -2,6 +2,41 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Kmp",
+            "request": "launch",
+            "mainClass": "Kmp",
+            "projectName": "handWrite_43efec23"
+        },
+        {
+            "type": "java",
+            "name": "Launch SmallSumMergeSort",
+            "request": "launch",
+            "mainClass": "SmallSumMergeSort",
+            "projectName": "handWrite_43efec23"
+        },
+        {
+            "type": "java",
+            "name": "Launch SortTest02",
+            "request": "launch",
+            "mainClass": "SortTest02",
+            "projectName": "handWrite_43efec23"
+        },
+        {
+            "type": "java",
+            "name": "Launch BinaryTreeTraverse",
+            "request": "launch",
+            "mainClass": "BinaryTreeTraverse",
+            "projectName": "handWrite_43efec23"
+        },
+        {
+            "type": "java",
+            "name": "Launch SortTest",
+            "request": "launch",
+            "mainClass": "SortTest",
+            "projectName": "handWrite_43efec23"
+        },
+        {
+            "type": "java",
             "name": "Launch Sort",
             "request": "launch",
             "mainClass": "Sort",
