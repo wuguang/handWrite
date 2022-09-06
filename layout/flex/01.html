@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        body,html{
+            padding:0px;
+            margin:0px;
+            height:100%;
+            background: #ecf4ee;
+        }
+        .myContainer{
+            display: inline-flex;
+            height:100%;
+            width:50%;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: baseline;
+        }
+
+        .myContainer span{
+           
+            width:100px;
+           
+            margin-top:15px;
+            border:5px solid hsl(295, 53%, 60%);
+        }
+
+        .myContainer span:nth-child(1){
+            background: red;
+            height: 350px;
+            font-size: 50px;
+        }
+
+        .myContainer span:nth-child(2){
+            background: rgb(249, 212, 3);
+            height: 100px;
+           
+        }
+        .myContainer span:nth-child(3){
+            background: #fcfc05;
+            height: 150px;
+           
+        }
+        .myContainer span:nth-child(4){
+            background: rgb(0, 255, 26);
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <section class="myContainer">
+        <span>1<Br/>1<br/></span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+ <!-- 
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+
+        <span>9</span>
+        <span>10</span>
+        <span>11</span>
+-->
+
+    </section>
+
+    <span>hello world~~</span>
+</body>
+</html>
+<!-- 
+
+justify-content:space-evenly;
+
+-->
