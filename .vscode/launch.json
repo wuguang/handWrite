@@ -5,6 +5,13 @@
             "name": "Launch Kmp",
             "request": "launch",
             "mainClass": "Kmp",
+            "projectName": "handWrite_84d503e9"
+        },
+        {
+            "type": "java",
+            "name": "Launch Kmp",
+            "request": "launch",
+            "mainClass": "Kmp",
             "projectName": "handWrite_43efec23"
         },
         {

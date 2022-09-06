@@ -49,7 +49,6 @@ public class Problem_21_KMPAlgorithm {
 		String str = "abcabcababaccc";
 		String match = "ababa";
 		System.out.println(getIndexOf(str, match));
-
 	}
 
 }

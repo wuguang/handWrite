@@ -1,3 +1,5 @@
+package algorithm.java-test;
+
 import java.util.Random;
 
 public class Kmp {
@@ -27,7 +29,6 @@ public class Kmp {
         if(srcStr == null || targetStr==null || srcStr.length()<targetStr.length()){
             return -1; 
         }
-
         int i = 0;
         char[] srcStrArr = srcStr.toCharArray();
         char[] targetStrArr = targetStr.toCharArray();
@@ -36,25 +37,41 @@ public class Kmp {
         int srcStrLen = srcStrArr.length;
 
         int[] nextArr = getNextArray(targetStrArr);
+        int[] nextArr02 = getNextArray02(targetStrArr);
 
+        for(int v:nextArr){
+            System.out.print( v + " ");
+        }
+        System.out.println("  -------------- ");
+        for(int v:nextArr02){
+            System.out.print( v + " ");
+        }
         
-
+        int j = 0;
         while(i<=srcStrLen - targetStrLen){
-            int matchNum = 0;
             int step = 1;
             System.out.println("111-i=" + i + "; step=" + step);
-            int j = 0;
+            
             while(j<targetStrLen){
-                if(targetStrArr[j] == srcStrArr[i]){
-                    matchNum++;
+                if(srcStrArr[i+j] == '#'){
+                    System.out.println("####,  i= " + i + ",j =" + j);
+                }
+                if(targetStrArr[j] == srcStrArr[i+j]){
+                    j++;
                 }else{
-                    step = j - nextArr[j];
-                    j = nextArr[j];
+                    // 不相等时 ，需要
+                    if(j==0||j==1){
+                        step = 1;
+                        j = 0;
+                    }else{
+                        step = j - nextArr[j];
+                        j = nextArr[j];
+                    }
                     break;
                 }
             }
-            if(matchNum == targetStrLen){
-                return j;
+            if(j == targetStrLen){
+                return i;
             }
             System.out.println("i=" + i + "; step=" + step);
             i += step;
@@ -113,12 +130,12 @@ public class Kmp {
     }
 
     public static void main(String[] args){
-        testGetNextArray();
-        /*
-        String srcStr = "asdfqwerqwerasdfasdfasfqwwer";
-        String targetStr = "fasdfasf";
+        //testGetNextArray();
+        
+        String srcStr = "aabcaabcdeaabc##aabcaabcdeaabcaabcde";
+        String targetStr = "aabcaabcdeaabcaabcde";
         int result = kmpIndexOf(srcStr,targetStr);
         System.out.println("result=" + result);
-        */
+        
     }
 }

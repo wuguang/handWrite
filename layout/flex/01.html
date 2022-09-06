@@ -17,62 +17,70 @@
         .myContainer{
             display: inline-flex;
             height:100%;
-            width:50%;
+            width:500px;
+            /*
             flex-direction: row;
-            flex-wrap: nowrap;
-            align-items: baseline;
+            flex-wrap: wrap;
+            */
+            flex-flow:row wrap;
+            justify-content: space-evenly;
+            align-content:flex-start;
+            border:3px solid #00ff40;
         }
 
-        .myContainer span{
-           
+        .myContainer span{ 
+            margin:10px 0 0 0;
             width:100px;
-           
-            margin-top:15px;
+            height: 100px;
             border:5px solid hsl(295, 53%, 60%);
         }
 
         .myContainer span:nth-child(1){
             background: red;
-            height: 350px;
             font-size: 50px;
         }
 
         .myContainer span:nth-child(2){
             background: rgb(249, 212, 3);
-            height: 100px;
-           
         }
         .myContainer span:nth-child(3){
-            background: #fcfc05;
-            height: 150px;
-           
+            background: #fcfc05; 
         }
         .myContainer span:nth-child(4){
             background: rgb(0, 255, 26);
-            height: 200px;
         }
     </style>
 </head>
 <body>
     <section class="myContainer">
-        <span>1<Br/>1<br/></span>
+        <span>1</span>
         <span>2</span>
         <span>3</span>
         <span>4</span>
- <!-- 
         <span>5</span>
         <span>6</span>
         <span>7</span>
         <span>8</span>
+        
+ <!-- 
+    <span>2</span>
+        <span>3</span>
+        <span>4</span>
+    <span>5</span>
+    <span>6</span>
+    <span>7</span>
+    <span>8</span>
 
-        <span>9</span>
-        <span>10</span>
-        <span>11</span>
+    <span>9</span>
+    <span>10</span>
+    <span>11</span>
 -->
 
     </section>
 
-    <span>hello world~~</span>
+    <section class="example-01">
+
+    </section>
 </body>
 </html>
 <!-- 
