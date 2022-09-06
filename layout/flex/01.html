@@ -13,6 +13,7 @@
             margin:0px;
             height:100%;
             background: #ecf4ee;
+            display: flex;
         }
         .myContainer{
             display: inline-flex;
@@ -49,9 +50,76 @@
         .myContainer span:nth-child(4){
             background: rgb(0, 255, 26);
         }
+
+        .example-01{
+            width:303px;
+            height:303px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffF;
+            border:3px solid #ffff09;
+        }
+        .example-01 span{
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 100px;
+            background: #000;;
+        }
+
+        .example-02{
+            width:303px;
+            height:303px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: #ffF;
+            border:3px solid #ffff09;
+        }
+        .example-02 span{
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 100px;
+            background: #000;;
+        }
+        .example-02 span:nth-child(2){
+            align-self: flex-end;
+        }
+
+
+        .example-03{
+            width:303px;
+            height:303px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: #ffF;
+            border:3px solid #ffff09;
+        }
+        .example-03 span{
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 100px;
+            background: #000;;
+        }
+        .example-03 span:nth-child(2){
+            align-self: center;
+        }
+
+        .example-03 span:nth-child(3){
+            align-self: flex-end;
+        }
     </style>
 </head>
 <body>
+    <!-- 
     <section class="myContainer">
         <span>1</span>
         <span>2</span>
@@ -61,8 +129,6 @@
         <span>6</span>
         <span>7</span>
         <span>8</span>
-        
- <!-- 
     <span>2</span>
         <span>3</span>
         <span>4</span>
@@ -70,16 +136,25 @@
     <span>6</span>
     <span>7</span>
     <span>8</span>
-
     <span>9</span>
     <span>10</span>
     <span>11</span>
+    </section>
 -->
 
+    <section class="example-01">
+        <span>1</span>
     </section>
 
-    <section class="example-01">
+    <section class="example-02">
+        <span>1</span>
+        <span>2</span>
+    </section>
 
+    <section class="example-03">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
     </section>
 </body>
 </html>
