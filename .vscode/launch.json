@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch SortMerge",
+            "request": "launch",
+            "mainClass": "SortMerge",
+            "projectName": "handWrite_e99d0f77"
+        },
+        {
+            "type": "java",
             "name": "Launch Robot",
             "request": "launch",
             "mainClass": "Robot",
