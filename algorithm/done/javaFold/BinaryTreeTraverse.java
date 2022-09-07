@@ -98,18 +98,17 @@ class BinaryTreeTraverse{
         Node cur = head;
         //myStack.push(cur);
         //不停，分解
-        Node curParent = null;
         while(cur!=null || !myStack.isEmpty()){
             //先找最左侧 节点 ,添加节点
             while(cur!=null){
                 myStack.push(cur);
                 //先找到最左侧节点，再找最右侧节点
                 if(cur.left != null){
-                    curParent = cur;
+                    
                     cur = cur.left;
                 }else{
                     if(cur.right != null){
-                        curParent = cur;
+                        
                     }
                     cur = cur.right; 
                 }

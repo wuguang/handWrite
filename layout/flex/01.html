@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        body,html{
+            padding:0px;
+            margin:0px;
+            height:100%;
+            background: #ecf4ee;
+            display: flex;
+        }
+        .myContainer{
+            display: inline-flex;
+            height:100%;
+            width:500px;
+            /*
+            flex-direction: row;
+            flex-wrap: wrap;
+            */
+            flex-flow:row wrap;
+            justify-content: space-evenly;
+            align-content:flex-start;
+            border:3px solid #00ff40;
+        }
+
+        .myContainer span{ 
+            margin:10px 0 0 0;
+            width:100px;
+            height: 100px;
+            border:5px solid hsl(295, 53%, 60%);
+        }
+
+        .myContainer span:nth-child(1){
+            background: red;
+            font-size: 50px;
+        }
+
+        .myContainer span:nth-child(2){
+            background: rgb(249, 212, 3);
+        }
+        .myContainer span:nth-child(3){
+            background: #fcfc05; 
+        }
+        .myContainer span:nth-child(4){
+            background: rgb(0, 255, 26);
+        }
+
+        .example-01{
+            width:303px;
+            height:303px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffF;
+            border:3px solid #ffff09;
+        }
+        .example-01 span{
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 100px;
+            background: #000;;
+        }
+
+        .example-02{
+            width:303px;
+            height:303px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: #ffF;
+            border:3px solid #ffff09;
+        }
+        .example-02 span{
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 100px;
+            background: #000;;
+        }
+        .example-02 span:nth-child(2){
+            align-self: flex-end;
+        }
+
+
+        .example-03{
+            width:303px;
+            height:303px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: #ffF;
+            border:3px solid #ffff09;
+        }
+        .example-03 span{
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 100px;
+            background: #000;;
+        }
+        .example-03 span:nth-child(2){
+            align-self: center;
+        }
+
+        .example-03 span:nth-child(3){
+            align-self: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+    <section class="myContainer">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+    <span>2</span>
+        <span>3</span>
+        <span>4</span>
+    <span>5</span>
+    <span>6</span>
+    <span>7</span>
+    <span>8</span>
+    <span>9</span>
+    <span>10</span>
+    <span>11</span>
+    </section>
+-->
+
+    <section class="example-01">
+        <span>1</span>
+    </section>
+
+    <section class="example-02">
+        <span>1</span>
+        <span>2</span>
+    </section>
+
+    <section class="example-03">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+    </section>
+</body>
+</html>
+<!-- 
+
+justify-content:space-evenly;
+
+-->

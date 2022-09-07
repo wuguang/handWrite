@@ -10,7 +10,6 @@ public class FoldingPaper {
 
     public static String result = "";
     public static String getNTrace(int n){
-        String result = "";
         getResultByCenter(n);
 
         return "";
@@ -32,8 +31,6 @@ public class FoldingPaper {
                 queue.add(curNode.right);
                 i++;
             }
-
-           String result = blByCenter(tree);
 
             // 以上构建完毕
             // 以下遍历树
@@ -66,7 +63,7 @@ public class FoldingPaper {
         result += "凹,";
 
         // 右节点
-        result +=  blByCenter(head.right);
+       // result +=  blByCenter(head.right);
 
         return result;
 
